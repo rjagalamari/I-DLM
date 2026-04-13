@@ -1,0 +1,9 @@
+{
+  "open_thoughts3_sample": {
+    "hf_hub_url": "open-thoughts/OpenThoughts3-1.2M",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations"
+    }
+  }
+}
