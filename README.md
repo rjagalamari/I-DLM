@@ -1,7 +1,7 @@
 # I-DLM: Introspective Diffusion Language Models
 
 <p align="center">
-  <a href="https://yifan1130.github.io/projects/introspective-diffusion-lm/"><img src="https://img.shields.io/badge/Homepage-Project-orange.svg?logo=googlehome" alt="Project"></a>
+  <a href="http://introspective-diffusion.github.io/"><img src="https://img.shields.io/badge/Homepage-Project-orange.svg?logo=googlehome" alt="Project"></a>
   <a href="https://arxiv.org/abs/7471639"><img src="https://img.shields.io/badge/Arxiv-7471639-b31b1b.svg?logo=arXiv" alt="arXiv"></a>
   <a href="https://huggingface.co/collections/yifanyu/introspective-diffusion-language-models-i-dlm"><img src="https://img.shields.io/badge/HuggingFace-Models-blue.svg?logo=huggingface" alt="Hugging Face"></a>
 </p>
