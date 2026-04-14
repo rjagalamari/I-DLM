@@ -80,7 +80,7 @@ https://github.com/user-attachments/assets/5d72f3b7-468c-4087-a8f1-b551ec9622ec
 ### Installation
 
 ```bash
-git clone https://github.com/togethercomputer/introspective-dlm.git
+git clone https://github.com/Introspective-Diffusion/I-DLM.git
 cd introspective-dlm/inference
 bash install.sh
 ```
