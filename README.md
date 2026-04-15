@@ -180,7 +180,7 @@ This project builds upon:
           and Wu, Xiaoxia and Wu, Qingyang and Song, Shuaiwen Leon
           and Dao, Tri and Athiwaratkun, Ben and Zou, James
           and Lai, Fan and Xu, Chenfeng},
-  journal={arXiv preprint arXiv:7471639},
+  journal={arXiv preprint arXiv:2604.11035},
   year={2026}
 }
 ```
