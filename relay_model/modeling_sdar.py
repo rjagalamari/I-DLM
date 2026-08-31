@@ -847,8 +847,10 @@ class SDARModel(SDARPreTrainedModel):
             raise ValueError(
                 "The `past_key_values` should be either a `Cache` object or `None`.")
 
+
         if inputs_embeds is None:
             inputs_embeds = self.embed_tokens(input_ids)
+
 
         # --- Speculative Relay: hidden-state injection ---
         # Guarded to [MASK] positions only.
