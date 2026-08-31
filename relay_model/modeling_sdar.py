@@ -851,9 +851,7 @@ class SDARModel(SDARPreTrainedModel):
             inputs_embeds = self.embed_tokens(input_ids)
 
         # --- Speculative Relay: hidden-state injection ---
-        # Guarded to [MASK] positions only. Clean/introspect positions must stay
-        # base-only so p remains the exact AR anchor and the p/q acceptance test
-        # keeps its meaning — this is the correctness boundary in Dhruvesh's §4.
+        # Guarded to [MASK] positions only.
         # It also keeps the delta off the x0 half of [xt | x0].
         if self.use_relay:
             if prev_latent is None:
