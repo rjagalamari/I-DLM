@@ -33,3 +33,10 @@ Thumbs.db
 tmp*/
 
 .omc
+
+# relay-verify: local artifacts
+*.bak
+*.safetensors
+runs/*/
+!runs/*.sbatch
+wandb/
