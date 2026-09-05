@@ -17,6 +17,7 @@
 
 import json
 import os
+import sys
 from types import MethodType
 from typing import TYPE_CHECKING, Any, Optional, Union
 
@@ -104,21 +105,268 @@ class CustomSeq2SeqTrainer(Seq2SeqTrainer):
 
         return super()._get_train_sampler(*args, **kwargs)
 
+    ## verifying the noisy logits...
+   
+    def _relay_verify(self, model, inputs):
+        """Verify pass-1 drafts against the clean half.
+
+        Ported from the I-DLM serving path
+        (inference/sglang/sglang/srt/dllm/algorithm/fused_verify_kernel.py):
+          draft token = argmax(q)        -- "argmax SPEC positions directly"
+          p, q        = full-vocab softmax; the verifier applies NO top_k/top_p
+          temperature = 1.0 -> INV_TEMP = 1.0, so no logit scaling
+          ratio       = p / (q * ALPHA), ALPHA = verify_alpha, default 1.0
+          accepted    = (ratio >= 1.0) | (rand < ratio)
+
+        KNOWN APPROXIMATION -- structural, not fixable in this training format:
+          At inference, p for spec_k is conditioned on the DRAFT prefix. Here the
+          clean half holds ground truth, so p is conditioned on the TRUE prefix.
+          This accept rate is a related but different quantity from live acceptance.
+        """
+        h1 = self._relay["h1"]                          # [B, 2L, H]
+        labels = inputs["labels"]
+        B, L = labels.shape
+        assert B == 1, "answer-span slicing assumes batch size 1"
+        base = getattr(model, "module", model)
+        lm_dtype = base.lm_head.weight.dtype             # h1 is fp32, lm_head is bf16
+        alpha = 1.0                                      # verify_alpha default
+
+        with torch.no_grad():
+            m = (labels[0] != -100).nonzero().flatten()
+            if m.numel() == 0:                           # truncation removed the answer
+                empty_b = torch.zeros(0, dtype=torch.bool, device=h1.device)
+                empty_l = torch.zeros(0, dtype=torch.long, device=h1.device)
+                return empty_b, empty_l, 0.0, 0, 0
+
+            a, z = int(m[0]), int(m[-1])                 # answer spans a .. z
+            assert m.numel() == z - a + 1, "answer span not contiguous"
+            assert a >= 1, "answer starts at position 0; nothing can propose it"
+
+            # hidden[i] predicts token i+1, so positions a-1 .. z-1 propose the
+            # answer tokens a .. z -- every answer token exactly once.
+            h_n = h1[0, a - 1 : z].to(lm_dtype)                  # noisy half -> q
+            h_c = h1[0, L + a - 1 : L + z].to(lm_dtype)          # clean half -> p
+            n = z - a + 1
+
+            accepted = torch.empty(n, dtype=torch.bool, device=h1.device)
+            drafts = torch.empty(n, dtype=torch.long, device=h1.device)
+            accepted_ratio = 0.0
+
+            for s in range(0, n, 512):
+                e = min(s + 512, n)
+                q_logits = base.lm_head(h_n[s:e]).float()
+                p_logits = base.lm_head(h_c[s:e]).float()
+
+                draft = q_logits.argmax(-1)
+                drafts[s:e] = draft
+                q = q_logits.softmax(-1).gather(-1, draft[:, None]).squeeze(-1)
+                p = p_logits.softmax(-1).gather(-1, draft[:, None]).squeeze(-1)
+
+                ratio = torch.where(q > 0, p / (q * alpha), torch.zeros_like(p))
+                accepted_ratio += ratio.clamp(max=1.0).sum().item()
+                accepted[s:e] = (ratio >= 1.0) | (torch.rand_like(ratio) < ratio)
+
+        return accepted, drafts, accepted_ratio / max(n, 1), a, z
+
+
+
+    def _relay_scan(self, accepted, a, block_size):
+        """Left-to-right prefix scan: within each block, keep drafts until the
+        first rejection, then stop.
+
+        UNRESOLVED -- the grouping. block_diff_mask tiles blocks as
+        q_idx // block_size counting from position 0, so blocks do not align with
+        where the answer starts. This uses the MODEL's tiling, grouping each
+        decision by the block of the mask that produced it. The alternative is
+        answer-aligned blocks (starting at `a`), which is what inference does.
+        Not settled.
+        """
+        n = accepted.numel()
+        keep = torch.zeros_like(accepted)
+        alive = {}                                  # block index -> still accepting?
+        for k in range(n):
+            b = (a - 1 + k) // block_size           # block of the deciding position
+            if alive.get(b, True):
+                if accepted[k]:
+                    keep[k] = True
+                else:
+                    alive[b] = False
+        return keep
+
+
+    def _relay_canvas(self, model, inputs, drafts, keep, a, z):
+        """Build pass 2's canvas and the relay carry.
+
+        Kept drafts become real tokens in the noisy half; rejected positions and
+        everything after them in their block stay [MASK] and get re-drafted.
+        The clean half, the position ids and the attention mask are unchanged --
+        block boundaries are position-based, so revealing tokens doesn't move them.
+        """
+        h1 = self._relay["h1"]                      # [B, 2L, H]
+        input_ids = inputs["input_ids"]
+        B, L = input_ids.shape
+        dev = input_ids.device
+        base = getattr(model, "module", model)
+
+        # PEFT wraps the model, so type(base).__module__ is peft's.
+        # Find the already-imported modeling_sdar directly.
+        sdar = next(
+            m for n, m in sys.modules.items()
+            if n.endswith(".modeling_sdar")
+        )
+        mask_id = base.config.mask_token_id
+
+        with torch.no_grad():
+            # ---- noisy half: reveal kept drafts, leave the rest masked ----
+            noisy = input_ids.clone()
+            noisy[0, a : z + 1] = mask_id
+
+            pos = torch.arange(a, z + 1, device=dev)
+            noisy[0, pos[keep]] = drafts[keep]
+
+            still_masked = torch.zeros(
+                B, L, dtype=torch.bool, device=dev
+            )
+            still_masked[0, pos[~keep]] = True
+
+            # ---- the 6-tuple ----
+            concat_inputs_ids = torch.cat([noisy, input_ids], dim=1)
+
+            pids = torch.arange(L, device=dev).unsqueeze(0).expand(B, -1)
+            concat_position_ids = torch.cat([pids, pids], dim=1)
+
+            num_tokens = sdar.calculate_token_nums(pids)
+            am = sdar.block_attn_mask(
+                num_tokens,
+                base.config.block_size,
+                dev,
+                use_regular_causal=base.config.use_regular_causal,
+            )
+            flex_mask = sdar.create_block_mask(
+                lambda b, h, q_idx, kv_idx: am[b, q_idx, kv_idx],
+                B=am.size(0),
+                H=None,
+                Q_LEN=am.size(1),
+                KV_LEN=am.size(2),
+            )
+
+            # ---- FIX: select prediction positions for missing targets ----
+            # Missing token t is predicted by hidden state t - 1.
+            # still_masked identifies input-token positions; this mask
+            # identifies the hidden positions whose predictions get a loss.
+            logits_to_keep_half = torch.zeros_like(still_masked)
+            logits_to_keep_half[:, :-1] = (
+                still_masked[:, 1:]
+                & inputs["labels"][:, 1:].ne(IGNORE_INDEX)
+            )
+
+            logits_to_keep = torch.cat(
+                [
+                    logits_to_keep_half,
+                    torch.zeros_like(logits_to_keep_half),
+                ],
+                dim=1,
+            )
+            p_mask = torch.ones(
+                int(logits_to_keep_half.sum()),
+                device=dev,
+            )
+
+            canvas2 = (
+                concat_inputs_ids,
+                concat_position_ids,
+                flex_mask,
+                logits_to_keep_half,
+                logits_to_keep,
+                p_mask,
+            )
+
+            # ---- relay carry at each still-masked input position ----
+            # Recycle h1[p] at input position p.
+            # Carry placement is separate from the loss-selection shift.
+            m3 = still_masked[0].unsqueeze(-1)       # [L, 1]
+            prev_latent = torch.zeros_like(h1)
+            prev_latent[0, :L] = torch.where(
+                m3,
+                h1[0, :L],
+                torch.zeros_like(h1[0, :L]),
+            )
+
+        return canvas2, prev_latent
+
+
+
+    # Relay trainer changes..
     @override
-    def compute_loss(self, model, inputs, *args, **kwargs):
+    def training_step(self, model, inputs, *args, **kwargs):
+        """Two-pass hidden-state relay rollout.
+
+        Each super() call is a complete forward+backward, so gradients from both
+        passes accumulate into .grad before the optimizer step. The constant factor
+        of 2 versus the mean is absorbed by Adam.
+
+        Pass 1's backward frees its graph before pass 2 runs, so the relay carry
+        must be detached -- this is the Relay (sg) variant.
+        """
+        self._relay = {"pass": 1}
+        loss1 = super().training_step(model, inputs, *args, **kwargs)
+
+        # ---- rollout: verify pass-1 drafts, apply the per-block prefix rule,
+        # ---- then build pass 2's canvas and the relay carry ----
+        accepted, drafts, mean_ratio, a, z = self._relay_verify(model, inputs)
+        if accepted.numel() > 0:
+            base = getattr(model, "module", model)
+            keep = self._relay_scan(accepted, a, base.config.block_size)
+
+            canvas2, prev_latent = self._relay_canvas(model, inputs, drafts, keep, a, z)
+            self._relay.update({"canvas2": canvas2, "prev_latent": prev_latent})
+
+            self.log({
+                "train/accept_rate": accepted.float().mean().item(),
+                "train/expected_accept": mean_ratio,
+                "train/keep_rate": keep.float().mean().item(),
+            })
+
+        self._relay["pass"] = 2
+        loss2 = super().training_step(model, inputs, *args, **kwargs)
+
+        self._relay = None          # so eval / prediction_step take the normal path
+        return (loss1 + loss2) / 2  # logging only -- both backwards already ran
+
+
+
+    @override
+    def compute_loss(self, model, inputs, return_outputs=False, *args, **kwargs):
         # NOTE: The "ar" loss assumes an SDAR model that internally concatenates [noisy|clean],
         # producing hidden_states of length 2*seq_len. This will not work with standard AR models.
         if self.finetuning_args.idlm_loss_type != "ar":
-            return super().compute_loss(model, inputs, *args, **kwargs)
+            return super().compute_loss(
+                model, inputs, return_outputs, *args, **kwargs
+            )
 
         alpha = self.finetuning_args.ce_alpha
         labels = inputs.get("labels")
         assert labels is not None
 
+        # ===== RELAY: pass 1 uses the model's own canvas; pass 2 gets ours =====
+        relay = getattr(self, "_relay", None)
+        bd_inputs = relay.get("canvas2") if relay is not None else None
+
         # Forward pass — the SDAR model internally concatenates [noisy_xt | clean_x0],
         # so input_ids has length L but hidden_states has length 2L.
-        outputs = model(**inputs, output_hidden_states=True)
+        outputs = model(
+            **inputs,
+            output_hidden_states=True,
+            bd_inputs=bd_inputs,
+            prev_latent=relay.get("prev_latent") if relay is not None else None,
+        )
+
         task_loss = outputs["loss"]  # CE on all positions (noisy + clean)
+
+        # ===== RELAY: keep pass 1's hidden states for pass 2.
+        # detach() is required -- backward(loss1) frees this graph. =====
+        if relay is not None and relay["pass"] == 1:
+            relay["h1"] = outputs["hidden_states"][-1].detach()   # [B, 2L, H]
 
         # Unwrap DeepSpeedEngine/FSDP to access lm_head directly
         unwrapped_model = getattr(model, "module", model)
@@ -133,7 +381,9 @@ class CustomSeq2SeqTrainer(Seq2SeqTrainer):
             shifted_labels = F.pad(shifted_labels, (0, seq_len - shifted_labels.shape[1]), value=-100)
 
         clean_logits = unwrapped_model.lm_head(
-            outputs["hidden_states"][-1][:, seq_len : seq_len + seq_len, :]
+            outputs["hidden_states"][-1][:, seq_len : seq_len + seq_len, :].to(
+                unwrapped_model.lm_head.weight.dtype
+            )
         )
         ce_logits = clean_logits.view(-1, clean_logits.size(-1))
         ce_labels = shifted_labels.view(-1)
@@ -145,11 +395,13 @@ class CustomSeq2SeqTrainer(Seq2SeqTrainer):
         else:
             combined_loss = task_loss + alpha * clean_ce_loss
 
-        # Logging
+        # Logging -- the suffix keeps the two passes as separate curves. Empty on
+        # non-relay runs, so baseline key names stay comparable across arms.
+        sfx = f"_p{relay['pass']}" if relay is not None else ""
         log_dict = {
-            "train/task_loss": task_loss.item(),
-            "train/clean_ce_loss": clean_ce_loss.item(),
-            "train/combined_loss": combined_loss.item(),
+            f"train/task_loss{sfx}": task_loss.item(),
+            f"train/clean_ce_loss{sfx}": clean_ce_loss.item(),
+            f"train/combined_loss{sfx}": combined_loss.item(),
             "train/alpha": alpha,
         }
         self.log(log_dict)
@@ -164,6 +416,9 @@ class CustomSeq2SeqTrainer(Seq2SeqTrainer):
 
         return combined_loss
 
+
+
+   
     @override
     def prediction_step(
         self,
