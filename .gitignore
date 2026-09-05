@@ -40,3 +40,4 @@ tmp*/
 runs/*/
 !runs/*.sbatch
 wandb/
+runs/slurm-*
