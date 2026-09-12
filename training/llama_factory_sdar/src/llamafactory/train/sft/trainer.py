@@ -196,10 +196,8 @@ class CustomSeq2SeqTrainer(Seq2SeqTrainer):
                         prev_latent=prev_latent, bd_inputs=bd)
         task_loss = outputs["loss"]
 
-        # The model divides by all answer tokens, but we now predict fewer.
-        # Without this, the relay arm's loss looks lower for a purely mechanical reason.
-        if use_relay and n_pred:
-            task_loss = task_loss * int((labels != -100).sum()) / n_pred
+        # n_pred rescale removed 2026-09-02: with 585 blocks/sequence the factor
+        # answer_len/n_pred is near-constant (~2.0), and Adam is scale-invariant.
 
 
         # AR CE loss on clean (x0) region with Dream-shift-aligned labels.

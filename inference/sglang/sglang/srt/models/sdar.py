@@ -411,6 +411,13 @@ class SDARModel(nn.Module):
             self.norm = RMSNorm(self.embed_dim, eps=config.rms_norm_eps, **norm_kwargs)
         else:
             self.norm = PPMissingLayer(return_tuple=True)
+        # ===== RELAY =====
+        # LayerNorm(prev_hidden) is added to MASK embeddings in forward().
+
+        self.layer_norm = nn.LayerNorm(self.embed_dim, dtype=torch.float32)
+        torch.nn.init.zeros_(self.layer_norm.weight)
+        torch.nn.init.zeros_(self.layer_norm.bias)
+
 
     def forward(
         self,
@@ -424,6 +431,13 @@ class SDARModel(nn.Module):
             hidden_states = (
                 self.embed_tokens(input_ids) if input_embeds is None else input_embeds
             )
+            # ===== RELAY =====
+            # Add LayerNorm(previous round's hidden states) at MASK positions.
+            _prev = getattr(forward_batch, "relay_prev", None)
+            if _prev is not None:
+                _delta = self.layer_norm(_prev.float()).to(hidden_states.dtype)
+                _m = forward_batch.relay_mask.unsqueeze(-1)
+                hidden_states = torch.where(_m, hidden_states + _delta, hidden_states)
             residual = None
         else:
             assert pp_proxy_tensors is not None
@@ -443,6 +457,8 @@ class SDARModel(nn.Module):
         else:
             if not forward_batch.forward_mode.is_idle():
                 hidden_states, residual = self.norm(hidden_states, residual)
+             # ===== RELAY =====
+            forward_batch.relay_out = hidden_states.detach()
             return hidden_states
 
 

@@ -73,6 +73,9 @@ class LoRAAdapter(nn.Module):
 
         self.embedding_layers: Dict[str, torch.Tensor] = {}
         self.added_tokens_embeddings: Dict[str, torch.Tensor] = {}
+        # Relay layer norm weights...
+        self.relay_layer_norm: Dict[str, torch.Tensor] = {}
+
 
     def initialize_weights(self):
         model_path = self.config.path
@@ -132,6 +135,16 @@ class LoRAAdapter(nn.Module):
                 f"LoRA adapter {self.uid} has extra_vocab_size {self.config.extra_vocab_size} specified in the config, "
                 f"but the loaded weight has {loaded_weight.shape[0]} extra vocab size"
             )
+        
+        elif ".layer_norm." in name:
+            # ===== RELAY =====
+            self.relay_layer_norm[name] = loaded_weight.cpu()
+            logger.info(
+                f"[RELAY] adapter {self.uid}: captured {name} "
+                f"shape={tuple(loaded_weight.shape)} "
+                f"norm={loaded_weight.float().norm().item():.6f}"
+            )
+
 
     def _normalize_weights(self):
         # normalize kv_proj and gate_up_proj

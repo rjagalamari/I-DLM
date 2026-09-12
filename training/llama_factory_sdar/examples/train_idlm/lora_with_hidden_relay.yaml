@@ -34,7 +34,7 @@ stop_grad_relay: true
 additional_target: layer_norm
 
 ### output
-output_dir: ../../../lora_with_hidden_relay_finetune/checkpoints
+output_dir: /work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/relay-2step/runs/relay_2step
 logging_steps: 5
 save_steps: 50
 save_total_limit: 10
@@ -45,7 +45,7 @@ report_to: wandb
 wandb_project: IDLM
 
 ### train
-run_name: rung5_relay_N8
+run_name: rung5_relay_2step
 seed: 42
 include_effective_tokens_per_second: true
 per_device_train_batch_size: 1

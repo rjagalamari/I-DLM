@@ -46,3 +46,5 @@ checkpoint-*/
 .env
 .env.local
 __pycache__/
+runs/*
+!runs/*.sbatch

@@ -505,6 +505,16 @@ class LoRAManager:
             self.lora_backend,
         )
         lora_adapter.initialize_weights()
+        # ===== RELAY =====
+        if lora_adapter.relay_layer_norm:
+            ln = self.base_model.model.layer_norm
+            with torch.no_grad():
+                for n, t in lora_adapter.relay_layer_norm.items():
+                    p = ln.weight if n.endswith(".weight") else ln.bias
+                    p.copy_(t.to(device=p.device, dtype=p.dtype))
+            logger.info(
+                f"[RELAY] layer_norm loaded: weight_norm={ln.weight.norm().item():.6f}"
+            )
 
         # If we want to overlap loading LoRA adapters with compute, they must be pinned in CPU memory
         if self.enable_lora_overlap_loading:

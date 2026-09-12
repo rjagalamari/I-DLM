@@ -189,6 +189,11 @@ class IDLMBlockN(DllmAlgorithm):
             "output_correction", False
         )
 
+         # ===== RELAY =====
+        self.enable_relay: bool = config.algorithm_config.get("enable_relay", False)
+        # rpx -> (start_position, hidden_states[T, H]) from the previous round
+        self._relay_hidden: Dict[int, tuple] = {}
+
         # Per-request state (keyed by req_pool_idx)
         self._prev_last_logits: Dict[int, torch.Tensor] = {}
         # Greedy shortcut: store argmax token id directly instead of full logits
@@ -247,6 +252,8 @@ class IDLMBlockN(DllmAlgorithm):
         self._prev_last_argmax.pop(req_pool_idx, None)
         self._pending.pop(req_pool_idx, None)
         self._spec_tokens.pop(req_pool_idx, None)
+        self._relay_hidden.pop(req_pool_idx, None)
+
         self._spec_draft_probs.pop(req_pool_idx, None)
         self._force_next_token.pop(req_pool_idx, None)
 
@@ -499,6 +506,46 @@ class IDLMBlockN(DllmAlgorithm):
                 model_runner, forward_batch, extend_lens_cpu,
                 is_prefill, case_types, old_specs,
             )
+        
+        # ===== RELAY =====
+        if self.enable_relay and self._relay_hidden:
+            _ids = forward_batch.input_ids
+            _pos = forward_batch.positions
+            _prev = None
+            _mask = torch.zeros(_ids.shape[0], dtype=torch.bool, device=_ids.device)
+            for bid in range(batch_size):
+                _st = self._relay_hidden.get(req_pool_indices_cpu[bid])
+                if _st is None:
+                    continue
+                _start, _h = _st
+                s = base_offsets[bid]
+                e = s + extend_lens_cpu[bid]
+                if e <= s:
+                    continue
+                if _prev is None:
+                    _prev = torch.zeros(
+                        _ids.shape[0], _h.shape[1], dtype=_h.dtype, device=_h.device
+                    )
+                _rel = _pos[s:e] - _start
+                _ok = (_rel >= 0) & (_rel < _h.shape[0]) & (_ids[s:e] == self.mask_id)
+                _prev[s:e] = torch.where(
+                    _ok.unsqueeze(-1),
+                    _h[_rel.clamp(0, _h.shape[0] - 1).long()],
+                    torch.zeros_like(_h[0]),
+                )
+
+                _mask[s:e] = _ok
+            if _prev is not None:
+                forward_batch.relay_prev = _prev
+                forward_batch.relay_mask = _mask
+                if not getattr(self, "_relay_count_done", False):
+                    self._relay_count_done = True
+                    _nm = int((_ids == self.mask_id).sum())
+                    _nr = int(_mask.sum())
+                    print(f"[RELAY] masks={_nm} relayed={_nr} fresh={_nm - _nr}",
+                          flush=True)
+
+
         forward_batch.dllm_force_causal = True
         out = model_runner.forward(forward_batch, pp_proxy_tensors=None)
         forward_batch.dllm_force_causal = False
@@ -510,6 +557,25 @@ class IDLMBlockN(DllmAlgorithm):
         # Phase 3 starts here — first access to full_logits blocks until GPU done
         logits_output = out.logits_output
         full_logits = logits_output.full_logits
+        if not getattr(self, "_relay_probe_done", False):
+            self._relay_probe_done = True
+            _hs = getattr(forward_batch, "relay_out", None)
+            print(f"[RELAY-PROBE] relay_out={None if _hs is None else tuple(_hs.shape)} "
+                    f"input_ids={tuple(forward_batch.input_ids.shape)}", flush=True)
+
+        # ===== RELAY =====
+        if self.enable_relay:
+            _ro = getattr(forward_batch, "relay_out", None)
+            if _ro is not None:
+                _pos_cpu = forward_batch.positions.tolist()
+                for bid in range(batch_size):
+                    s = base_offsets[bid]
+                    e = s + extend_lens_cpu[bid]
+                    if e > s:
+                        self._relay_hidden[req_pool_indices_cpu[bid]] = (
+                            _pos_cpu[s], _ro[s:e].clone()
+                        )
+
         if self._timing_enabled:
             torch.cuda.synchronize()  # For accurate phase timing (only when profiling)
             _t_phase2_end = time.perf_counter()
