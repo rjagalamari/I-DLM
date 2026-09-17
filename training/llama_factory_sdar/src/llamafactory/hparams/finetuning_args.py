@@ -531,6 +531,10 @@ class FinetuningArguments(
             )
         },
     )
+    relay_enable: bool = field(
+      default=False,
+      metadata={"help": "Enable two-pass relay training."},
+    )
     loss_auto_balance: bool = field(
         default=False,
         metadata={

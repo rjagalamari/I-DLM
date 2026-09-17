@@ -19,6 +19,8 @@ import json
 import os
 from types import MethodType
 from typing import TYPE_CHECKING, Any, Optional, Union
+# For verifying it..
+from .fused_verify_kernel import fused_spec_verify_from_logits
 
 import torch.nn.functional as F
 import numpy as np
@@ -118,7 +120,11 @@ class CustomSeq2SeqTrainer(Seq2SeqTrainer):
         # Forward pass — the SDAR model internally concatenates [noisy_xt | clean_x0],
         # so input_ids has length L but hidden_states has length 2L.
         outputs = model(**inputs, output_hidden_states=True)
+         ## relaying the hidden state for the second pass...
+        if (self.finetuning_args.relay_enable and getattr(self, "_relay_pass", None) == 1):
+            self._relay_hidden = outputs["hidden_states"][-1].detach()
         task_loss = outputs["loss"]  # CE on all positions (noisy + clean)
+
 
         # Unwrap DeepSpeedEngine/FSDP to access lm_head directly
         unwrapped_model = getattr(model, "module", model)
@@ -163,6 +169,98 @@ class CustomSeq2SeqTrainer(Seq2SeqTrainer):
             )
 
         return combined_loss
+
+    ## drafting the pass1 hidden states and verifying...
+    @torch.no_grad()
+    def _get_relay_drafts(self, model, noisy_hidden):
+      base = getattr(model, "module", model)
+
+      logits = base.lm_head(
+          noisy_hidden.to(base.lm_head.weight.dtype)
+      )
+
+      return logits.argmax(dim=-1)
+
+    # Verify the drafts..
+    @torch.no_grad()
+    def _verify_relay_drafts(
+      self, model, noisy_hidden, clean_hidden, inputs
+    ):
+        base = getattr(model, "module", model)
+        device = noisy_hidden.device
+
+        labels = inputs["labels"].to(device)
+        input_ids = inputs["input_ids"].to(device)
+
+        pad_token_id = self.processing_class.pad_token_id
+        token_valid = labels.ne(-100)
+
+        if pad_token_id is not None:
+            token_valid = token_valid & input_ids.ne(pad_token_id)
+        
+        valid_positions = torch.zeros_like(token_valid)
+        valid_positions[:, :-1] = token_valid[:, 1:]
+
+        drafts = torch.full_like(labels, -100)
+        accepted = torch.zeros_like(valid_positions)
+
+        if not valid_positions.any():
+              return drafts, accepted, valid_positions
+        # noisy logits..
+        lm_dtype = base.lm_head.weight.dtype
+        noisy_logits = base.lm_head(noisy_hidden[valid_positions].to(lm_dtype))
+        selected_drafts = noisy_logits.argmax(dim=-1)
+        #clean logits..
+        clean_logits = base.lm_head(clean_hidden[valid_positions].to(lm_dtype))
+        # Verify the drafts using fused kernel..
+        selected_accepted, _ = fused_spec_verify_from_logits(
+              clean_logits, noisy_logits, selected_drafts, temperature=1.0, alpha=1.0
+          )
+
+        drafts[valid_positions] = selected_drafts
+        accepted[valid_positions] = selected_accepted.bool()
+        ## making the block level acceptance mask for the next pass...
+        block_size = base.config.block_size
+        keep = torch.zeros_like(accepted)
+        for batch_idx in range(accepted.shape[0]):
+              for start in range(0, accepted.shape[1], block_size):
+                    end = min(start + block_size, accepted.shape[1])
+                    for pos in range(start, end):
+
+
+
+
+
+
+    # Two pass training step...
+    @override
+    def training_step(self, model, inputs, *args, **kwargs):
+      if not self.finetuning_args.relay_enable:
+          return super().training_step(model, inputs, *args, **kwargs)
+
+      self._relay_hidden = None
+
+      self._relay_pass = 1
+      loss1 = super().training_step(model, inputs, *args, **kwargs)
+      # Hidden states
+      hidden = self._relay_hidden
+      seq_len = hidden.shape[1] // 2
+
+      noisy_hidden = hidden[:, :seq_len, :]
+      clean_hidden = hidden[:, seq_len:, :]
+      # Generate drafts and verfiy..
+      drafts, accepted = self._verify_relay_drafts(
+        model, noisy_hidden, clean_hidden, inputs
+      )
+      self._relay_pass = 2
+      loss2 = super().training_step(model, inputs, *args, **kwargs)
+
+      self._relay_pass = None
+      self._relay_hidden = None
+
+      return (loss1 + loss2) / 2
+    
+
 
     @override
     def prediction_step(
