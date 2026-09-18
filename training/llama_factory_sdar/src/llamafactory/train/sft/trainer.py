@@ -12,17 +12,13 @@
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+# See the License for the specific language governing limitations under the License.
 
 import json
 import os
 from types import MethodType
 from typing import TYPE_CHECKING, Any, Optional, Union
-# For verifying it..
-from .fused_verify_kernel import fused_spec_verify_from_logits
 
-import torch.nn.functional as F
 import numpy as np
 import torch
 from transformers import Seq2SeqTrainer
@@ -33,6 +29,12 @@ from ...extras.constants import IGNORE_INDEX
 from ...extras.packages import is_transformers_version_greater_than
 from ..callbacks import SaveProcessorCallback
 from ..trainer_utils import create_custom_optimizer, create_custom_scheduler
+from .relay_step import (
+    acceptance_metrics_to_floats,
+    combined_idlm_loss,
+    pass2_mask_loss,
+    verify_and_build_pass2,
+)
 
 
 if TYPE_CHECKING:
@@ -86,6 +88,13 @@ class CustomSeq2SeqTrainer(Seq2SeqTrainer):
 
             self.compute_loss_func = dft_loss_func
 
+        self._relay_pass: Optional[int] = None
+        self._relay_layout = None
+        self._relay_h = None
+        self._relay_mask = None
+        self._relay_hidden = None
+        self._relay_metrics: dict[str, float] = {}
+
     @override
     def create_optimizer(self) -> "torch.optim.Optimizer":
         if self.optimizer is None:
@@ -106,6 +115,63 @@ class CustomSeq2SeqTrainer(Seq2SeqTrainer):
 
         return super()._get_train_sampler(*args, **kwargs)
 
+    def _model_inputs(self, inputs: dict[str, Any]) -> dict[str, Any]:
+        """Drop collator keys the SDAR forward does not consume."""
+        allowed = {"input_ids", "labels", "position_ids", "attention_mask"}
+        return {k: v for k, v in inputs.items() if k in allowed and v is not None}
+
+    def _log_idlm(self, task_loss, clean_ce_loss, combined_loss, extra: Optional[dict] = None) -> None:
+        alpha = self.finetuning_args.ce_alpha
+        log_dict = {
+            "train/task_loss": float(task_loss.detach().cpu()),
+            "train/clean_ce_loss": float(clean_ce_loss.detach().cpu()),
+            "train/combined_loss": float(combined_loss.detach().cpu()),
+            "train/alpha": alpha,
+        }
+        if extra:
+            log_dict.update(extra)
+        self._relay_metrics.update(log_dict)
+        try:
+            self.log(log_dict)
+        except Exception:
+            pass
+        logging_steps = getattr(self.args, "logging_steps", 1) or 1
+        global_step = getattr(getattr(self, "state", None), "global_step", 0)
+        if global_step % logging_steps == 0:
+            logger.info_rank0(
+                f"Step {global_step}: "
+                f"task_loss={log_dict['train/task_loss']:.4f}, "
+                f"clean_ce_loss={log_dict['train/clean_ce_loss']:.4f}, "
+                f"combined={log_dict['train/combined_loss']:.4f}"
+            )
+
+    def _pad_token_id(self) -> Optional[int]:
+        proc = getattr(self, "processing_class", None) or getattr(self, "tokenizer", None)
+        return getattr(proc, "pad_token_id", None) if proc is not None else None
+
+    def _scale_loss(self, loss: torch.Tensor) -> torch.Tensor:
+        """Match HF Trainer.training_step multi-gpu / grad-accum scaling.
+
+        Calling ``super().training_step`` twice would double-count
+        ``num_input_tokens_seen`` and apply grad-accum scaling twice, so the
+        relay path does two explicit ``compute_loss`` + ``backward`` calls and
+        applies this scale itself. Vanilla (``relay_enable=False``) still
+        uses the parent ``training_step``.
+        """
+        if getattr(self.args, "n_gpu", 1) > 1:
+            loss = loss.mean()
+        accum = getattr(self.args, "gradient_accumulation_steps", 1) or 1
+        if accum > 1:
+            loss = loss / accum
+        return loss
+
+    def _backward(self, loss: torch.Tensor) -> None:
+        accelerator = getattr(self, "accelerator", None)
+        if accelerator is not None:
+            accelerator.backward(loss)
+        else:
+            loss.backward()
+
     @override
     def compute_loss(self, model, inputs, *args, **kwargs):
         # NOTE: The "ar" loss assumes an SDAR model that internally concatenates [noisy|clean],
@@ -113,154 +179,92 @@ class CustomSeq2SeqTrainer(Seq2SeqTrainer):
         if self.finetuning_args.idlm_loss_type != "ar":
             return super().compute_loss(model, inputs, *args, **kwargs)
 
-        alpha = self.finetuning_args.ce_alpha
-        labels = inputs.get("labels")
-        assert labels is not None
-
-        # Forward pass — the SDAR model internally concatenates [noisy_xt | clean_x0],
-        # so input_ids has length L but hidden_states has length 2L.
-        outputs = model(**inputs, output_hidden_states=True)
-         ## relaying the hidden state for the second pass...
-        if (self.finetuning_args.relay_enable and getattr(self, "_relay_pass", None) == 1):
-            self._relay_hidden = outputs["hidden_states"][-1].detach()
-        task_loss = outputs["loss"]  # CE on all positions (noisy + clean)
-
-
-        # Unwrap DeepSpeedEngine/FSDP to access lm_head directly
-        unwrapped_model = getattr(model, "module", model)
-
-        # seq_len = L (original input length); clean region is hidden_states[:, L:2L]
-        seq_len = inputs["input_ids"].size(-1)
-
-        # AR CE loss on clean (x0) region with Dream-shift-aligned labels.
-        # hidden[i] predicts token[i+1], so shift labels by 1.
-        shifted_labels = labels[:, 1 : min(seq_len + 1, labels.shape[1])].contiguous()
-        if shifted_labels.shape[1] < seq_len:
-            shifted_labels = F.pad(shifted_labels, (0, seq_len - shifted_labels.shape[1]), value=-100)
-
-        clean_logits = unwrapped_model.lm_head(
-            outputs["hidden_states"][-1][:, seq_len : seq_len + seq_len, :]
-        )
-        ce_logits = clean_logits.view(-1, clean_logits.size(-1))
-        ce_labels = shifted_labels.view(-1)
-        clean_ce_loss = torch.nn.CrossEntropyLoss(ignore_index=IGNORE_INDEX)(ce_logits, ce_labels)
-
-        if self.finetuning_args.loss_auto_balance:
-            scale = task_loss.detach() / (clean_ce_loss.detach() + 1e-8)
-            combined_loss = task_loss + scale * clean_ce_loss
-        else:
-            combined_loss = task_loss + alpha * clean_ce_loss
-
-        # Logging
-        log_dict = {
-            "train/task_loss": task_loss.item(),
-            "train/clean_ce_loss": clean_ce_loss.item(),
-            "train/combined_loss": combined_loss.item(),
-            "train/alpha": alpha,
-        }
-        self.log(log_dict)
-
-        if self.state.global_step % self.args.logging_steps == 0:
-            logger.info_rank0(
-                f"Step {self.state.global_step}: "
-                f"task_loss={task_loss.item():.4f}, "
-                f"clean_ce_loss={clean_ce_loss.item():.4f}, "
-                f"combined={combined_loss.item():.4f}"
+        if getattr(self, "_relay_pass", None) == 2:
+            return pass2_mask_loss(
+                model,
+                inputs["input_ids"],
+                inputs["labels"],
+                self._relay_layout,
+                self._relay_h,
+                self._relay_mask,
             )
 
-        return combined_loss
+        # Vanilla / pass-1. Keep output_hidden_states=True when relay is off so
+        # the graph matches main; with relay on, use last-layer-only capture.
+        relay_on = bool(getattr(self.finetuning_args, "relay_enable", False))
+        model_inputs = self._model_inputs(inputs)
+        extra = {} if relay_on else {"output_hidden_states": True}
+        combined, extras = combined_idlm_loss(
+            model,
+            model_inputs["input_ids"],
+            model_inputs["labels"],
+            ce_alpha=self.finetuning_args.ce_alpha,
+            loss_auto_balance=self.finetuning_args.loss_auto_balance,
+            position_ids=model_inputs.get("position_ids"),
+            extra_model_kwargs=extra,
+        )
+        self._relay_hidden = extras["relay_h_last"].detach()
+        self._log_idlm(extras["task_loss"], extras["clean_ce_loss"], combined)
+        return combined
 
-    ## drafting the pass1 hidden states and verifying...
-    @torch.no_grad()
-    def _get_relay_drafts(self, model, noisy_hidden):
-      base = getattr(model, "module", model)
-
-      logits = base.lm_head(
-          noisy_hidden.to(base.lm_head.weight.dtype)
-      )
-
-      return logits.argmax(dim=-1)
-
-    # Verify the drafts..
-    @torch.no_grad()
-    def _verify_relay_drafts(
-      self, model, noisy_hidden, clean_hidden, inputs
-    ):
-        base = getattr(model, "module", model)
-        device = noisy_hidden.device
-
-        labels = inputs["labels"].to(device)
-        input_ids = inputs["input_ids"].to(device)
-
-        pad_token_id = self.processing_class.pad_token_id
-        token_valid = labels.ne(-100)
-
-        if pad_token_id is not None:
-            token_valid = token_valid & input_ids.ne(pad_token_id)
-        
-        valid_positions = torch.zeros_like(token_valid)
-        valid_positions[:, :-1] = token_valid[:, 1:]
-
-        drafts = torch.full_like(labels, -100)
-        accepted = torch.zeros_like(valid_positions)
-
-        if not valid_positions.any():
-              return drafts, accepted, valid_positions
-        # noisy logits..
-        lm_dtype = base.lm_head.weight.dtype
-        noisy_logits = base.lm_head(noisy_hidden[valid_positions].to(lm_dtype))
-        selected_drafts = noisy_logits.argmax(dim=-1)
-        #clean logits..
-        clean_logits = base.lm_head(clean_hidden[valid_positions].to(lm_dtype))
-        # Verify the drafts using fused kernel..
-        selected_accepted, _ = fused_spec_verify_from_logits(
-              clean_logits, noisy_logits, selected_drafts, temperature=1.0, alpha=1.0
-          )
-
-        drafts[valid_positions] = selected_drafts
-        accepted[valid_positions] = selected_accepted.bool()
-        ## making the block level acceptance mask for the next pass...
-        block_size = base.config.block_size
-        keep = torch.zeros_like(accepted)
-        for batch_idx in range(accepted.shape[0]):
-              for start in range(0, accepted.shape[1], block_size):
-                    end = min(start + block_size, accepted.shape[1])
-                    for pos in range(start, end):
-
-
-
-
-
-
-    # Two pass training step...
     @override
     def training_step(self, model, inputs, *args, **kwargs):
-      if not self.finetuning_args.relay_enable:
-          return super().training_step(model, inputs, *args, **kwargs)
+        if not getattr(self.finetuning_args, "relay_enable", False):
+            # Strictly additive: vanilla path is the parent training_step.
+            return super().training_step(model, inputs, *args, **kwargs)
 
-      self._relay_hidden = None
+        model.train()
+        if hasattr(self, "_prepare_inputs"):
+            inputs = self._prepare_inputs(inputs)
 
-      self._relay_pass = 1
-      loss1 = super().training_step(model, inputs, *args, **kwargs)
-      # Hidden states
-      hidden = self._relay_hidden
-      seq_len = hidden.shape[1] // 2
+        # Pass 1: standard I-DLM loss, capture last-layer h, backward.
+        self._relay_pass = 1
+        with self.compute_loss_context_manager():
+            loss1 = self.compute_loss(model, inputs, *args, **kwargs)
+        hidden = self._relay_hidden
+        self._backward(self._scale_loss(loss1 * 0.5))
 
-      noisy_hidden = hidden[:, :seq_len, :]
-      clean_hidden = hidden[:, seq_len:, :]
-      # Generate drafts and verfiy..
-      drafts, accepted = self._verify_relay_drafts(
-        model, noisy_hidden, clean_hidden, inputs
-      )
-      self._relay_pass = 2
-      loss2 = super().training_step(model, inputs, *args, **kwargs)
+        # Verify (no grad) and pack step-2 canvases.
+        base = getattr(model, "module", model)
+        block_size = int(base.config.block_size)
+        mask_token_id = int(base.config.mask_token_id)
+        with torch.no_grad():
+            built = verify_and_build_pass2(
+                model,
+                inputs["input_ids"],
+                inputs["labels"],
+                hidden,
+                block_size=block_size,
+                mask_token_id=mask_token_id,
+                pad_token_id=self._pad_token_id(),
+                rollout_only=bool(getattr(self.finetuning_args, "relay_rollout_only", False)),
+                use_regular_causal=bool(getattr(base.config, "use_regular_causal", True)),
+            )
+        self._relay_layout = built["layout"]
+        self._relay_h = built["relay_h"]
+        self._relay_mask = built["relay_mask"]
+        metrics = acceptance_metrics_to_floats(built["metrics"])
+        self._relay_metrics.update(metrics)
+        try:
+            self.log(metrics)
+        except Exception:
+            pass
 
-      self._relay_pass = None
-      self._relay_hidden = None
+        # Pass 2: mask-CE only on warmstarted canvases (no second clean CE).
+        self._relay_pass = 2
+        with self.compute_loss_context_manager():
+            loss2 = self.compute_loss(model, inputs, *args, **kwargs)
+        self._backward(self._scale_loss(loss2 * 0.5))
 
-      return (loss1 + loss2) / 2
-    
+        self._relay_pass = None
+        self._relay_layout = None
+        self._relay_h = None
+        self._relay_mask = None
+        self._relay_hidden = None
 
+        # 0.5*(L1+L2) so logged magnitude matches the vanilla one-pass arm;
+        # then apply the same accum scaling HF would have applied.
+        return self._scale_loss((loss1.detach() + loss2.detach()) * 0.5)
 
     @override
     def prediction_step(

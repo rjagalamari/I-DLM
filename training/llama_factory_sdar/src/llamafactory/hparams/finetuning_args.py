@@ -535,6 +535,15 @@ class FinetuningArguments(
       default=False,
       metadata={"help": "Enable two-pass relay training."},
     )
+    relay_rollout_only: bool = field(
+        default=False,
+        metadata={
+            "help": (
+                "Arm B: run the K=2 rollout and post-rejection canvases but do not "
+                "inject carried hidden states (relay_mask is all-False)."
+            )
+        },
+    )
     loss_auto_balance: bool = field(
         default=False,
         metadata={
