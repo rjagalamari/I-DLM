@@ -119,43 +119,72 @@ class CustomSeq2SeqTrainer(Seq2SeqTrainer):
 
         # Forward pass — the SDAR model internally concatenates [noisy_xt | clean_x0],
         # so input_ids has length L but hidden_states has length 2L.
-        outputs = model(**inputs, output_hidden_states=True)
-         ## relaying the hidden state for the second pass...
-        if (self.finetuning_args.relay_enable and getattr(self, "_relay_pass", None) == 1):
-            self._relay_hidden = outputs["hidden_states"][-1].detach()
-        task_loss = outputs["loss"]  # CE on all positions (noisy + clean)
 
+        batch_size, seq_len = inputs["input_ids"].shape
+        base = getattr(model, "module", model)
 
-        # Unwrap DeepSpeedEngine/FSDP to access lm_head directly
-        unwrapped_model = getattr(model, "module", model)
-
-        # seq_len = L (original input length); clean region is hidden_states[:, L:2L]
-        seq_len = inputs["input_ids"].size(-1)
-
-        # AR CE loss on clean (x0) region with Dream-shift-aligned labels.
-        # hidden[i] predicts token[i+1], so shift labels by 1.
-        shifted_labels = labels[:, 1 : min(seq_len + 1, labels.shape[1])].contiguous()
-        if shifted_labels.shape[1] < seq_len:
-            shifted_labels = F.pad(shifted_labels, (0, seq_len - shifted_labels.shape[1]), value=-100)
-
-        clean_logits = unwrapped_model.lm_head(
-            outputs["hidden_states"][-1][:, seq_len : seq_len + seq_len, :]
+        relay_hidden = torch.zeros(
+            batch_size,
+            seq_len,
+            base.config.hidden_size,
+            device=inputs["input_ids"].device,
+            dtype=base.dtype,
         )
-        ce_logits = clean_logits.view(-1, clean_logits.size(-1))
-        ce_labels = shifted_labels.view(-1)
-        clean_ce_loss = torch.nn.CrossEntropyLoss(ignore_index=IGNORE_INDEX)(ce_logits, ce_labels)
 
-        if self.finetuning_args.loss_auto_balance:
-            scale = task_loss.detach() / (clean_ce_loss.detach() + 1e-8)
-            combined_loss = task_loss + scale * clean_ce_loss
-        else:
-            combined_loss = task_loss + alpha * clean_ce_loss
+        total_loss = 0
+        total_task_loss = 0
+        total_clean_ce_loss = 0
+        pass_inputs = dict(inputs)
+        for rollout in range(2):
+            outputs = model(**pass_inputs, output_hidden_states=True, prev_latent = relay_hidden)
+            task_loss = outputs["loss"]  # CE on all positions (noisy + clean)
+
+            # Unwrap DeepSpeedEngine/FSDP to access lm_head directly
+            unwrapped_model = getattr(model, "module", model)
+
+            # seq_len = L (original input length); clean region is hidden_states[:, L:2L]
+            seq_len = inputs["input_ids"].size(-1)
+
+            # AR CE loss on clean (x0) region with Dream-shift-aligned labels.
+            # hidden[i] predicts token[i+1], so shift labels by 1.
+            shifted_labels = labels[:, 1 : min(seq_len + 1, labels.shape[1])].contiguous()
+            if shifted_labels.shape[1] < seq_len:
+                shifted_labels = F.pad(shifted_labels, (0, seq_len - shifted_labels.shape[1]), value=-100)
+
+            clean_logits = unwrapped_model.lm_head(
+                outputs["hidden_states"][-1][:, seq_len : seq_len + seq_len, :]
+            )
+            ce_logits = clean_logits.view(-1, clean_logits.size(-1))
+            ce_labels = shifted_labels.view(-1)
+            clean_ce_loss = torch.nn.CrossEntropyLoss(ignore_index=IGNORE_INDEX)(ce_logits, ce_labels)
+
+            if self.finetuning_args.loss_auto_balance:
+                scale = task_loss.detach() / (clean_ce_loss.detach() + 1e-8)
+                combined_loss = task_loss + scale * clean_ce_loss
+            else:
+                combined_loss = task_loss + alpha * clean_ce_loss
+            
+            total_loss += combined_loss
+            total_task_loss += task_loss
+            total_clean_ce_loss += clean_ce_loss
+            if rollout == 0:
+                hidden = outputs["hidden_states"][-1]
+                noisy_hidden = hidden[:, :seq_len, :]
+                clean_hidden = hidden[:, seq_len:2 * seq_len, :]
+                pass_inputs["input_ids"] = self._verify_relay_drafts(
+                    model,
+                    noisy_hidden,
+                    clean_hidden,
+                    inputs,
+                )
+                pass_inputs["clean_input_ids"] = inputs["input_ids"]
+                relay_hidden = noisy_hidden.clone()
 
         # Logging
         log_dict = {
-            "train/task_loss": task_loss.item(),
-            "train/clean_ce_loss": clean_ce_loss.item(),
-            "train/combined_loss": combined_loss.item(),
+            "train/task_loss": total_task_loss.item(),
+            "train/clean_ce_loss": total_clean_ce_loss.item(),
+            "train/combined_loss": total_loss.item(),
             "train/alpha": alpha,
         }
         self.log(log_dict)
@@ -163,24 +192,12 @@ class CustomSeq2SeqTrainer(Seq2SeqTrainer):
         if self.state.global_step % self.args.logging_steps == 0:
             logger.info_rank0(
                 f"Step {self.state.global_step}: "
-                f"task_loss={task_loss.item():.4f}, "
-                f"clean_ce_loss={clean_ce_loss.item():.4f}, "
-                f"combined={combined_loss.item():.4f}"
+                f"task_loss={total_task_loss.item():.4f}, "
+                f"clean_ce_loss={total_clean_ce_loss.item():.4f}, "
+                f"combined={total_loss.item():.4f}"
             )
 
-        return combined_loss
-
-    ## drafting the pass1 hidden states and verifying...
-    @torch.no_grad()
-    def _get_relay_drafts(self, model, noisy_hidden):
-      base = getattr(model, "module", model)
-
-      logits = base.lm_head(
-          noisy_hidden.to(base.lm_head.weight.dtype)
-      )
-
-      return logits.argmax(dim=-1)
-
+        return total_loss
     # Verify the drafts..
     @torch.no_grad()
     def _verify_relay_drafts(
@@ -201,65 +218,65 @@ class CustomSeq2SeqTrainer(Seq2SeqTrainer):
         valid_positions = torch.zeros_like(token_valid)
         valid_positions[:, :-1] = token_valid[:, 1:]
 
-        drafts = torch.full_like(labels, -100)
+        
         accepted = torch.zeros_like(valid_positions)
 
-        if not valid_positions.any():
-              return drafts, accepted, valid_positions
+        
         # noisy logits..
         lm_dtype = base.lm_head.weight.dtype
         noisy_logits = base.lm_head(noisy_hidden[valid_positions].to(lm_dtype))
         selected_drafts = noisy_logits.argmax(dim=-1)
         #clean logits..
         clean_logits = base.lm_head(clean_hidden[valid_positions].to(lm_dtype))
+
+        # replacing the wrong token from clean half...
+        selected_clean_tokens = clean_logits.argmax(dim=-1)
+
+        clean_predictions = torch.full_like(labels, -100)
+        clean_predictions[valid_positions] = selected_clean_tokens
         # Verify the drafts using fused kernel..
         selected_accepted, _ = fused_spec_verify_from_logits(
               clean_logits, noisy_logits, selected_drafts, temperature=1.0, alpha=1.0
           )
 
-        drafts[valid_positions] = selected_drafts
+        
         accepted[valid_positions] = selected_accepted.bool()
         ## making the block level acceptance mask for the next pass...
         block_size = base.config.block_size
         keep = torch.zeros_like(accepted)
+        first_rejected = torch.zeros_like(accepted)
         for batch_idx in range(accepted.shape[0]):
               for start in range(0, accepted.shape[1], block_size):
                     end = min(start + block_size, accepted.shape[1])
                     for pos in range(start, end):
+                        if not valid_positions[batch_idx, pos].item():
+                            continue
+                        if not accepted[batch_idx, pos].item():
+                            first_rejected[batch_idx, pos] = True
+                            break
 
+                        keep[batch_idx, pos] = True
+        
+        remask = valid_positions & ~keep & ~first_rejected
+        # input for the next pass:
+        next_drafts = selected_drafts.clone()
 
+        # Correct the first rejection in each block.
+        correction_positions = first_rejected[valid_positions]
+        next_drafts[correction_positions] = clean_predictions[first_rejected]
 
+        # Mask only the positions after it.
+        next_drafts[remask[valid_positions]] = base.config.mask_token_id
 
+        next_input_ids = inputs["input_ids"].to(next_drafts.device).clone()
 
+        target_positions = torch.zeros_like(valid_positions)
+        target_positions[:, 1:] = valid_positions[:, :-1]
 
-    # Two pass training step...
-    @override
-    def training_step(self, model, inputs, *args, **kwargs):
-      if not self.finetuning_args.relay_enable:
-          return super().training_step(model, inputs, *args, **kwargs)
+        next_input_ids[target_positions] = next_drafts
 
-      self._relay_hidden = None
+        return next_input_ids
 
-      self._relay_pass = 1
-      loss1 = super().training_step(model, inputs, *args, **kwargs)
-      # Hidden states
-      hidden = self._relay_hidden
-      seq_len = hidden.shape[1] // 2
-
-      noisy_hidden = hidden[:, :seq_len, :]
-      clean_hidden = hidden[:, seq_len:, :]
-      # Generate drafts and verfiy..
-      drafts, accepted = self._verify_relay_drafts(
-        model, noisy_hidden, clean_hidden, inputs
-      )
-      self._relay_pass = 2
-      loss2 = super().training_step(model, inputs, *args, **kwargs)
-
-      self._relay_pass = None
-      self._relay_hidden = None
-
-      return (loss1 + loss2) / 2
-    
 
 
     @override

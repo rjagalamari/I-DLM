@@ -1,6 +1,6 @@
 # ============================================================================
 # I-DLM: Introspective Diffusion Language Model Training
-# Qwen3-8B, block_size=3, CE loss on both clean and noisy tokens
+# Qwen3-8B, block_size=7, CE loss on both clean and noisy tokens
 # Strict causal mask + logit shift (Dream shift), auto-balanced loss
 # ============================================================================
 
