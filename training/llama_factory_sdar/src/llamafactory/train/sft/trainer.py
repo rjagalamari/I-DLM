@@ -171,14 +171,14 @@ class CustomSeq2SeqTrainer(Seq2SeqTrainer):
                 hidden = outputs["hidden_states"][-1]
                 noisy_hidden = hidden[:, :seq_len, :]
                 clean_hidden = hidden[:, seq_len:2 * seq_len, :]
-                pass_inputs["input_ids"] = self._verify_relay_drafts(
+                pass_inputs["input_ids"], verify_hidden = self._verify_relay_drafts(
                     model,
                     noisy_hidden,
                     clean_hidden,
                     inputs,
                 )
                 pass_inputs["clean_input_ids"] = inputs["input_ids"]
-                relay_hidden = noisy_hidden.clone()
+                relay_hidden = verify_hidden.clone()
 
         # Logging
         log_dict = {
@@ -209,6 +209,35 @@ class CustomSeq2SeqTrainer(Seq2SeqTrainer):
             )
 
         return total_loss
+
+    # creating the attention mask for the next pass.
+
+    @staticmethod
+    def _build_verify_attention_mask(seq_len, block_size, device):
+      positions = torch.arange(2 * seq_len, device=device)
+      q = positions[:, None]
+      k = positions[None, :]
+
+      q_clean = q >= seq_len
+      k_clean = k >= seq_len
+      q_block = (q % seq_len) // block_size
+      k_block = (k % seq_len) // block_size
+
+      draft_attention = (
+          ~q_clean & ~k_clean
+          & (q_block == k_block)
+          & (q >= k)
+      )
+      prefix_attention = (
+          ~q_clean & k_clean
+          & (q_block > k_block)
+      )
+      clean_attention = q_clean & k_clean & (q >= k)
+
+      return (
+          draft_attention | prefix_attention | clean_attention
+      )[None, None, :, :]
+
     # Verify the drafts..
     @torch.no_grad()
     def _verify_relay_drafts(
@@ -237,8 +266,51 @@ class CustomSeq2SeqTrainer(Seq2SeqTrainer):
         lm_dtype = base.lm_head.weight.dtype
         noisy_logits = base.lm_head(noisy_hidden[valid_positions].to(lm_dtype))
         selected_drafts = noisy_logits.argmax(dim=-1)
-        #clean logits..
-        clean_logits = base.lm_head(clean_hidden[valid_positions].to(lm_dtype))
+
+        # verifying with the base model....
+        # Destination positions for the next-token predictions.
+        target_positions = torch.zeros_like(valid_positions)
+        target_positions[:, 1:] = valid_positions[:, :-1]
+
+        # Preserve prompt/padding; replace answer targets with drafts.
+        draft_input_ids = input_ids.clone()
+        draft_input_ids[target_positions] = selected_drafts
+
+        # Unpacked verifier input: [draft sequence | original clean sequence].
+        verify_input_ids = torch.cat(
+            [draft_input_ids, input_ids],
+            dim=1,
+        )
+
+        verify_attention_mask = self._build_verify_attention_mask(
+            seq_len=input_ids.shape[1],
+            block_size=base.config.block_size,
+            device=device,
+        )
+
+        seq_len = input_ids.shape[1]
+        position_ids = torch.arange(seq_len, device=device)
+        position_ids = position_ids.repeat(2).unsqueeze(0).expand(input_ids.shape[0], -1)
+
+        base.model.eval()
+        verify_outputs = base.model(
+            input_ids=verify_input_ids,
+            attention_mask=verify_attention_mask,
+            position_ids=position_ids,
+            use_cache=False,
+            return_dict=True,
+            prev_latent=None,
+        )
+        base.model.train()
+
+        
+        seq_len = input_ids.shape[1]
+        verify_hidden = verify_outputs.last_hidden_state[:, :seq_len, :]
+
+        clean_logits = base.lm_head(
+            verify_hidden[valid_positions].to(lm_dtype)
+        )
+
 
         # replacing the wrong token from clean half...
         selected_clean_tokens = clean_logits.argmax(dim=-1)
@@ -281,12 +353,10 @@ class CustomSeq2SeqTrainer(Seq2SeqTrainer):
 
         next_input_ids = inputs["input_ids"].to(next_drafts.device).clone()
 
-        target_positions = torch.zeros_like(valid_positions)
-        target_positions[:, 1:] = valid_positions[:, :-1]
 
         next_input_ids[target_positions] = next_drafts
 
-        return next_input_ids
+        return next_input_ids, verify_hidden
 
 
 
