@@ -773,8 +773,9 @@ class SDARModel(SDARPreTrainedModel):
         self.rotary_emb = SDARRotaryEmbedding(config=config)
         self.gradient_checkpointing = False
 
-        self.relay_layer_norm = SDARRMSNorm(config.hidden_size, eps=config.rms_norm_eps)
-
+        self.relay_layer_norm = nn.LayerNorm(
+            config.hidden_size, eps=config.rms_norm_eps
+        )
         # Initialize weights and apply final processing
         self.post_init()
 

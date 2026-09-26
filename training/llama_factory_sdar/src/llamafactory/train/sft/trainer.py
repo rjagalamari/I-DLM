@@ -187,6 +187,17 @@ class CustomSeq2SeqTrainer(Seq2SeqTrainer):
             "train/combined_loss": total_loss.item(),
             "train/alpha": alpha,
         }
+        relay_norm = unwrapped_model.model.relay_layer_norm
+
+        with torch.no_grad():
+            log_dict.update({
+                "train/relay_weight_norm": relay_norm.weight.float().norm().item(),
+                "train/relay_bias_norm": relay_norm.bias.float().norm().item(),
+                "train/relay_trainable": float(
+                    relay_norm.weight.requires_grad
+                    and relay_norm.bias.requires_grad
+                ),
+                })
         self.log(log_dict)
 
         if self.state.global_step % self.args.logging_steps == 0:
