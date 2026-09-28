@@ -24,10 +24,13 @@
 from typing import Callable, Optional, Tuple, Union, List
 
 import torch
+import torch._dynamo
+torch._dynamo.config.automatic_dynamic_shapes = False
 
 torch._dynamo.config.cache_size_limit = 512
 torch._dynamo.config.accumulated_cache_size_limit = 512
 from torch import nn
+
 from einops import rearrange
 
 from transformers.activations import ACT2FN
