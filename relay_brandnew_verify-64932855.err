@@ -1,0 +1,471 @@
+Removing libiconv version 1.17
+Removing xz version 5.4.6
+Removing zlib-ng version 2.1.6
+Removing libxml2 version 2.10.3
+Removing cuda version 12.4.1
+Loading libiconv version 1.17
+Loading xz version 5.4.6
+Loading zlib-ng version 2.1.6
+Loading libxml2 version 2.10.3
+Loading cuda version 12.4.1
+W0927 03:03:50.640000 1368081 torch/distributed/run.py:792] 
+W0927 03:03:50.640000 1368081 torch/distributed/run.py:792] *****************************************
+W0927 03:03:50.640000 1368081 torch/distributed/run.py:792] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0927 03:03:50.640000 1368081 torch/distributed/run.py:792] *****************************************
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:04:30,984 >> loading file vocab.json
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:04:30,984 >> loading file merges.txt
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:04:30,984 >> loading file added_tokens.json
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:04:30,984 >> loading file special_tokens_map.json
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:04:30,984 >> loading file tokenizer_config.json
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:04:30,984 >> loading file tokenizer.json
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:04:30,984 >> loading file chat_template.jinja
+[default0]:[INFO|tokenization_utils_base.py:2336] 2026-09-27 03:04:31,233 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[default0]:[INFO|configuration_utils.py:750] 2026-09-27 03:04:31,239 >> loading configuration file ../model/Qwen3-8B-b7-allmasked/config.json
+[default0]:[INFO|configuration_utils.py:750] 2026-09-27 03:04:31,265 >> loading configuration file ../model/Qwen3-8B-b7-allmasked/config.json
+[default0]:[INFO|configuration_utils.py:817] 2026-09-27 03:04:31,266 >> Model config SDARConfig {
+[default0]:  "architectures": [
+[default0]:    "SDARForCausalLM"
+[default0]:  ],
+[default0]:  "attention_bias": false,
+[default0]:  "attention_dropout": 0.0,
+[default0]:  "auto_map": {
+[default0]:    "AutoConfig": "configuration_sdar.SDARConfig",
+[default0]:    "AutoModel": "modeling_sdar.SDARModel",
+[default0]:    "AutoModelForCausalLM": "modeling_sdar.SDARForCausalLM"
+[default0]:  },
+[default0]:  "block_size": 7,
+[default0]:  "bos_token_id": 151643,
+[default0]:  "eos_token_id": 151645,
+[default0]:  "fuse_cross_entropy": true,
+[default0]:  "head_dim": 128,
+[default0]:  "hidden_act": "silu",
+[default0]:  "hidden_size": 4096,
+[default0]:  "initializer_range": 0.02,
+[default0]:  "intermediate_size": 12288,
+[default0]:  "mask_token_id": 151669,
+[default0]:  "max_position_embeddings": 40960,
+[default0]:  "max_window_layers": 36,
+[default0]:  "model_type": "sdar",
+[default0]:  "num_attention_heads": 32,
+[default0]:  "num_hidden_layers": 36,
+[default0]:  "num_key_value_heads": 8,
+[default0]:  "rms_norm_eps": 1e-06,
+[default0]:  "rope_scaling": null,
+[default0]:  "rope_theta": 1000000,
+[default0]:  "sliding_window": null,
+[default0]:  "tie_word_embeddings": false,
+[default0]:  "torch_dtype": "bfloat16",
+[default0]:  "transformers_version": "4.55.0",
+[default0]:  "use_cache": false,
+[default0]:  "use_regular_causal": true,
+[default0]:  "use_sliding_window": false,
+[default0]:  "vocab_size": 151936
+[default0]:}
+[default0]:
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:04:31,271 >> loading file vocab.json
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:04:31,271 >> loading file merges.txt
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:04:31,271 >> loading file added_tokens.json
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:04:31,271 >> loading file special_tokens_map.json
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:04:31,271 >> loading file tokenizer_config.json
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:04:31,271 >> loading file tokenizer.json
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:04:31,271 >> loading file chat_template.jinja
+[default0]:[INFO|tokenization_utils_base.py:2336] 2026-09-27 03:04:31,440 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[default0]:[INFO|configuration_utils.py:750] 2026-09-27 03:04:31,466 >> loading configuration file ../model/Qwen3-8B-b7-allmasked/config.json
+[default0]:[INFO|configuration_utils.py:750] 2026-09-27 03:04:31,469 >> loading configuration file ../model/Qwen3-8B-b7-allmasked/config.json
+[default0]:[INFO|configuration_utils.py:817] 2026-09-27 03:04:31,470 >> Model config SDARConfig {
+[default0]:  "architectures": [
+[default0]:    "SDARForCausalLM"
+[default0]:  ],
+[default0]:  "attention_bias": false,
+[default0]:  "attention_dropout": 0.0,
+[default0]:  "auto_map": {
+[default0]:    "AutoConfig": "configuration_sdar.SDARConfig",
+[default0]:    "AutoModel": "modeling_sdar.SDARModel",
+[default0]:    "AutoModelForCausalLM": "modeling_sdar.SDARForCausalLM"
+[default0]:  },
+[default0]:  "block_size": 7,
+[default0]:  "bos_token_id": 151643,
+[default0]:  "eos_token_id": 151645,
+[default0]:  "fuse_cross_entropy": true,
+[default0]:  "head_dim": 128,
+[default0]:  "hidden_act": "silu",
+[default0]:  "hidden_size": 4096,
+[default0]:  "initializer_range": 0.02,
+[default0]:  "intermediate_size": 12288,
+[default0]:  "mask_token_id": 151669,
+[default0]:  "max_position_embeddings": 40960,
+[default0]:  "max_window_layers": 36,
+[default0]:  "model_type": "sdar",
+[default0]:  "num_attention_heads": 32,
+[default0]:  "num_hidden_layers": 36,
+[default0]:  "num_key_value_heads": 8,
+[default0]:  "rms_norm_eps": 1e-06,
+[default0]:  "rope_scaling": null,
+[default0]:  "rope_theta": 1000000,
+[default0]:  "sliding_window": null,
+[default0]:  "tie_word_embeddings": false,
+[default0]:  "torch_dtype": "bfloat16",
+[default0]:  "transformers_version": "4.55.0",
+[default0]:  "use_cache": false,
+[default0]:  "use_regular_causal": true,
+[default0]:  "use_sliding_window": false,
+[default0]:  "vocab_size": 151936
+[default0]:}
+[default0]:
+[default0]:[INFO|modeling_utils.py:1305] 2026-09-27 03:04:33,236 >> loading weights file ../model/Qwen3-8B-b7-allmasked/model.safetensors.index.json
+[default0]:[INFO|modeling_utils.py:2411] 2026-09-27 03:04:33,237 >> Instantiating SDARForCausalLM model under default dtype torch.bfloat16.
+[default0]:[INFO|configuration_utils.py:1098] 2026-09-27 03:04:33,240 >> Generate config GenerationConfig {
+[default0]:  "bos_token_id": 151643,
+[default0]:  "eos_token_id": 151645,
+[default0]:  "use_cache": false
+[default0]:}
+[default0]:
+[default1]:
+[default1]:Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][default0]:
+[default0]:Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][default1]:
+[default0]:
+[default1]:Loading checkpoint shards:  25%|██▌       | 1/4 [00:25<01:15, 25.14s/it][default0]:Loading checkpoint shards:  25%|██▌       | 1/4 [00:24<01:14, 24.97s/it][default0]:
+[default0]:Loading checkpoint shards:  50%|█████     | 2/4 [00:47<00:47, 23.67s/it][default1]:
+[default1]:Loading checkpoint shards:  50%|█████     | 2/4 [00:47<00:47, 23.73s/it][default1]:
+[default1]:Loading checkpoint shards:  75%|███████▌  | 3/4 [01:07<00:22, 22.06s/it][default0]:
+[default0]:Loading checkpoint shards:  75%|███████▌  | 3/4 [01:07<00:22, 22.04s/it][default1]:
+[default1]:Loading checkpoint shards: 100%|██████████| 4/4 [01:15<00:00, 16.16s/it]
+[default1]:Loading checkpoint shards: 100%|██████████| 4/4 [01:15<00:00, 18.77s/it]
+[default1]:Some weights of SDARForCausalLM were not initialized from the model checkpoint at ../model/Qwen3-8B-b7-allmasked and are newly initialized: ['model.relay_layer_norm.bias', 'model.relay_layer_norm.weight']
+[default1]:You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+[default0]:
+[default0]:Loading checkpoint shards: 100%|██████████| 4/4 [01:14<00:00, 16.15s/it]
+[default0]:Loading checkpoint shards: 100%|██████████| 4/4 [01:14<00:00, 18.74s/it]
+[default0]:[INFO|modeling_utils.py:5606] 2026-09-27 03:05:48,442 >> All model checkpoint weights were used when initializing SDARForCausalLM.
+[default0]:
+[default0]:[WARNING|modeling_utils.py:5608] 2026-09-27 03:05:48,442 >> Some weights of SDARForCausalLM were not initialized from the model checkpoint at ../model/Qwen3-8B-b7-allmasked and are newly initialized: ['model.relay_layer_norm.bias', 'model.relay_layer_norm.weight']
+[default0]:You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+[default0]:[INFO|configuration_utils.py:1051] 2026-09-27 03:05:48,445 >> loading configuration file ../model/Qwen3-8B-b7-allmasked/generation_config.json
+[default0]:[INFO|configuration_utils.py:1098] 2026-09-27 03:05:48,445 >> Generate config GenerationConfig {
+[default0]:  "bos_token_id": 151643,
+[default0]:  "do_sample": true,
+[default0]:  "eos_token_id": [
+[default0]:    151645,
+[default0]:    151643
+[default0]:  ],
+[default0]:  "pad_token_id": 151643,
+[default0]:  "temperature": 0.6,
+[default0]:  "top_k": 20,
+[default0]:  "top_p": 0.95
+[default0]:}
+[default0]:
+[default1]:[rank1]:[W927 03:05:51.296429280 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 1]  using GPU 1 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[default0]:[rank0]:[W927 03:05:53.722098056 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[default0]:[INFO|trainer.py:757] 2026-09-27 03:05:56,974 >> Using auto half precision backend
+[default0]:[INFO|trainer.py:2433] 2026-09-27 03:06:01,363 >> ***** Running training *****
+[default0]:[INFO|trainer.py:2434] 2026-09-27 03:06:01,363 >>   Num examples = 16,000
+[default0]:[INFO|trainer.py:2435] 2026-09-27 03:06:01,363 >>   Num Epochs = 1
+[default0]:[INFO|trainer.py:2436] 2026-09-27 03:06:01,363 >>   Instantaneous batch size per device = 1
+[default0]:[INFO|trainer.py:2439] 2026-09-27 03:06:01,363 >>   Total train batch size (w. parallel, distributed & accumulation) = 32
+[default0]:[INFO|trainer.py:2440] 2026-09-27 03:06:01,363 >>   Gradient Accumulation steps = 16
+[default0]:[INFO|trainer.py:2441] 2026-09-27 03:06:01,363 >>   Total optimization steps = 500
+[default0]:[INFO|trainer.py:2442] 2026-09-27 03:06:01,367 >>   Number of trainable parameters = 349,184,000
+[default0]:[INFO|integration_utils.py:866] 2026-09-27 03:06:01,371 >> Automatic Weights & Biases logging enabled, to disable set os.environ["WANDB_DISABLED"] = "true"
+[default0]:wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /home/rjagalamari_umass_edu/.netrc.
+[default0]:wandb: Currently logged in as: rjagalamari (rjagalamari-university-of-massachusetts) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+[default0]:wandb: setting up run 11gv6b93
+[default0]:wandb: Tracking run with wandb version 0.28.2
+[default0]:wandb: Run data is saved locally in /home/rjagalamari_umass_edu/wandb/wandb/run-20260927_030603-11gv6b93
+[default0]:wandb: Run `wandb offline` to turn off syncing.
+[default0]:wandb: Syncing run relay_brandnew_verify
+[default0]:wandb: ⭐️ View project at https://wandb.ai/rjagalamari-university-of-massachusetts/idlm-training
+[default0]:wandb: 🚀 View run at https://wandb.ai/rjagalamari-university-of-massachusetts/idlm-training/runs/11gv6b93
+[default0]:
+[default0]:  0%|          | 0/500 [00:00<?, ?it/s][default0]:[rank0]:E0927 03:06:23.421000 1368102 torch/_inductor/select_algorithm.py:1477] [0/0] Exception out of resource: shared memory, Required: 180224, Hardware limit: 166912. Reducing block sizes or `num_stages` may help. for benchmark choice TritonTemplateCaller(/tmp/rjagalamari_umass_edu/idlm_64932855/inductor/cf/ccf5tz7v4qfci46nvaas7fagbxsfcn7zbpxoxkkmkvjeycqdxc2g.py, BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=64, BLOCK_N=128, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4)
+[default1]:[rank1]:E0927 03:06:23.489000 1368103 torch/_inductor/select_algorithm.py:1477] [0/0] Exception out of resource: shared memory, Required: 180224, Hardware limit: 166912. Reducing block sizes or `num_stages` may help. for benchmark choice TritonTemplateCaller(/tmp/rjagalamari_umass_edu/idlm_64932855/inductor/vx/cvxpw2myz2vx36irlvjvafcldsu25gcbsfyyuswus4gek2gtqhar.py, BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=64, BLOCK_N=128, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4)
+[default0]:[rank0]:E0927 03:06:23.989000 1368102 torch/_inductor/select_algorithm.py:1477] [0/0] Exception out of resource: shared memory, Required: 205824, Hardware limit: 166912. Reducing block sizes or `num_stages` may help. for benchmark choice TritonTemplateCaller(/tmp/rjagalamari_umass_edu/idlm_64932855/inductor/2z/c2zes4kbpnnbgdvg4ci2ktira7cofqwjsmnyldggyvbprb467jdt.py, BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=128, BLOCK_N=128, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4)
+[default0]:[rank0]:W0927 03:06:24.445000 1368102 torch/_inductor/select_algorithm.py:1696] [0/0] out of resource: shared memory, Required: 205824, Hardware limit: 166912. Reducing block sizes or `num_stages` may help.
+[default0]:[rank0]:W0927 03:06:24.463000 1368102 torch/_inductor/select_algorithm.py:1696] [0/0] out of resource: shared memory, Required: 180224, Hardware limit: 166912. Reducing block sizes or `num_stages` may help.
+[default1]:[rank1]:E0927 03:06:24.669000 1368103 torch/_inductor/select_algorithm.py:1477] [0/0] Exception out of resource: shared memory, Required: 205824, Hardware limit: 166912. Reducing block sizes or `num_stages` may help. for benchmark choice TritonTemplateCaller(/tmp/rjagalamari_umass_edu/idlm_64932855/inductor/u2/cu2t5vlskecykfxj7js6wjqztbvvgwqx3gjmt5fee47b7p2pkvhz.py, BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=128, BLOCK_N=128, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4)
+[default0]:AUTOTUNE flex_attention(1x32x8192x128, 1x8x8192x128, 1x8x8192x128, 1x32x8192, 1x1x64, 1x1x64x64, 1x1x64, 1x1x64x64, 1x8192x8192)
+[default0]:  triton_flex_attention_0 4.5046 ms 100.0% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=128, BLOCK_N=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=8
+[default0]:  triton_flex_attention_1 4.9551 ms 90.9% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=128, BLOCK_N=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default0]:  triton_flex_attention_4 5.7969 ms 77.7% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=64, BLOCK_N=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default0]:  triton_flex_attention_2 inf ms 0.0% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=128, BLOCK_N=128, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default0]:  triton_flex_attention_3 inf ms 0.0% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=64, BLOCK_N=128, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default0]:SingleProcess AUTOTUNE benchmarking takes 0.6415 seconds and 7.0528 seconds precompiling for 5 choices
+[default1]:[rank1]:W0927 03:06:25.062000 1368103 torch/_inductor/select_algorithm.py:1696] [0/0] out of resource: shared memory, Required: 205824, Hardware limit: 166912. Reducing block sizes or `num_stages` may help.
+[default1]:[rank1]:W0927 03:06:25.079000 1368103 torch/_inductor/select_algorithm.py:1696] [0/0] out of resource: shared memory, Required: 180224, Hardware limit: 166912. Reducing block sizes or `num_stages` may help.
+[default1]:AUTOTUNE flex_attention(1x32x8192x128, 1x8x8192x128, 1x8x8192x128, 1x32x8192, 1x1x64, 1x1x64x64, 1x1x64, 1x1x64x64, 1x8192x8192)
+[default1]:  triton_flex_attention_0 3.6557 ms 100.0% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=128, BLOCK_N=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=8
+[default1]:  triton_flex_attention_1 4.9521 ms 73.8% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=128, BLOCK_N=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default1]:  triton_flex_attention_4 5.7948 ms 63.1% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=64, BLOCK_N=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default1]:  triton_flex_attention_2 inf ms 0.0% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=128, BLOCK_N=128, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default1]:  triton_flex_attention_3 inf ms 0.0% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=64, BLOCK_N=128, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default1]:SingleProcess AUTOTUNE benchmarking takes 0.5778 seconds and 7.7276 seconds precompiling for 5 choices
+[default0]:
+[default0]:                                       
+[default0]:
+[default0]:  0%|          | 0/500 [00:51<?, ?it/s][default1]:[rank1]:E0927 03:07:50.676000 1368103 torch/_inductor/select_algorithm.py:1477] [0/1] Exception out of resource: shared memory, Required: 188416, Hardware limit: 166912. Reducing block sizes or `num_stages` may help. for benchmark choice TritonTemplateCaller(/tmp/rjagalamari_umass_edu/idlm_64932855/inductor/nc/cnctss2ronjytiorwldf72ay7anw7ca2uljaajgokynyw2qvq4pf.py, BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=64, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=5, num_warps=4)
+[default0]:[rank0]:E0927 03:07:51.831000 1368102 torch/_inductor/select_algorithm.py:1477] [0/1] Exception out of resource: shared memory, Required: 188416, Hardware limit: 166912. Reducing block sizes or `num_stages` may help. for benchmark choice TritonTemplateCaller(/tmp/rjagalamari_umass_edu/idlm_64932855/inductor/zt/cztkyej3exysdwe3nbytp5p2j3tsx4uu26zuozdq3bk3fzoo4hia.py, BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=64, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=5, num_warps=4)
+[default1]:[rank1]:E0927 03:07:53.967000 1368103 torch/_inductor/select_algorithm.py:1477] [0/1] Exception out of resource: shared memory, Required: 193536, Hardware limit: 166912. Reducing block sizes or `num_stages` may help. for benchmark choice TritonTemplateCaller(/tmp/rjagalamari_umass_edu/idlm_64932855/inductor/na/cnaaxf7epqti7pz4dlug2eunipplrpk2upeoksouh2bnrn2ahy7d.py, BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=64, BLOCK_M2=128, BLOCK_N1=128, BLOCK_N2=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=4, num_warps=4)
+[default1]:[rank1]:E0927 03:07:54.220000 1368103 torch/_inductor/select_algorithm.py:1477] [0/1] Exception out of resource: shared memory, Required: 234496, Hardware limit: 166912. Reducing block sizes or `num_stages` may help. for benchmark choice TritonTemplateCaller(/tmp/rjagalamari_umass_edu/idlm_64932855/inductor/2k/c2kp7brvecgoxreajqu5gfmqobypkawx4lhl73kmcptxhqt6322w.py, BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=64, BLOCK_M2=128, BLOCK_N1=128, BLOCK_N2=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=5, num_warps=4)
+[default0]:[rank0]:E0927 03:07:54.358000 1368102 torch/_inductor/select_algorithm.py:1477] [0/1] Exception out of resource: shared memory, Required: 193536, Hardware limit: 166912. Reducing block sizes or `num_stages` may help. for benchmark choice TritonTemplateCaller(/tmp/rjagalamari_umass_edu/idlm_64932855/inductor/ax/caxshw2lp32cbyxg67y5stbhd25gr7ye2p4fehx5c6452f7zrhdg.py, BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=64, BLOCK_M2=128, BLOCK_N1=128, BLOCK_N2=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=4, num_warps=4)
+[default0]:[rank0]:E0927 03:07:54.405000 1368102 torch/_inductor/select_algorithm.py:1477] [0/1] Exception out of resource: shared memory, Required: 234496, Hardware limit: 166912. Reducing block sizes or `num_stages` may help. for benchmark choice TritonTemplateCaller(/tmp/rjagalamari_umass_edu/idlm_64932855/inductor/4q/c4qgpw55tpgqvk3gbdtg74buuc2c3f4j555wmvehgvri23fnztzi.py, BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=64, BLOCK_M2=128, BLOCK_N1=128, BLOCK_N2=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=5, num_warps=4)
+[default1]:[rank1]:W0927 03:08:12.949000 1368103 torch/_inductor/select_algorithm.py:1696] [0/1] out of resource: shared memory, Required: 188416, Hardware limit: 166912. Reducing block sizes or `num_stages` may help.
+[default0]:[rank0]:W0927 03:08:13.156000 1368102 torch/_inductor/select_algorithm.py:1696] [0/1] out of resource: shared memory, Required: 188416, Hardware limit: 166912. Reducing block sizes or `num_stages` may help.
+[default1]:[rank1]:W0927 03:08:21.523000 1368103 torch/_inductor/select_algorithm.py:1696] [0/1] out of resource: shared memory, Required: 193536, Hardware limit: 166912. Reducing block sizes or `num_stages` may help.
+[default1]:[rank1]:W0927 03:08:21.555000 1368103 torch/_inductor/select_algorithm.py:1696] [0/1] out of resource: shared memory, Required: 234496, Hardware limit: 166912. Reducing block sizes or `num_stages` may help.
+[default1]:AUTOTUNE flex_attention_backward(1x32x8192x128, 1x8x8192x128, 1x8x8192x128, 1x32x8192, 1x32x8192, 1x32x8192x128, 1x32x8192x128, 1x8x8192x128, 1x1x64, 1x1x64x64, 1x1x64, 1x1x64x64, 1x1x64, 1x1x64x64, 1x1x64, 1x1x64x64, 1x8192x8192)
+[default1]:  triton_flex_attention_backward_15 15.4542 ms 100.0% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default1]:  triton_flex_attention_backward_24 15.9232 ms 97.1% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=64, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=4, num_warps=4
+[default1]:  triton_flex_attention_backward_23 16.3062 ms 94.8% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=64, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default1]:  triton_flex_attention_backward_22 16.3983 ms 94.2% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=64, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=1, num_warps=4
+[default1]:  triton_flex_attention_backward_11 18.2548 ms 84.7% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=32, BLOCK_N1=32, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default1]:  triton_flex_attention_backward_12 18.3183 ms 84.4% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=32, BLOCK_N1=32, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=4, num_warps=4
+[default1]:  triton_flex_attention_backward_14 19.4488 ms 79.5% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=1, num_warps=4
+[default1]:  triton_flex_attention_backward_17 20.6193 ms 75.0% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=5, num_warps=4
+[default1]:  triton_flex_attention_backward_16 20.6725 ms 74.8% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=4, num_warps=4
+[default1]:  triton_flex_attention_backward_10 22.7041 ms 68.1% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=32, BLOCK_N1=32, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=1, num_warps=4
+[default1]:SingleProcess AUTOTUNE benchmarking takes 27.3318 seconds and 51.9975 seconds precompiling for 20 choices
+[default0]:[rank0]:W0927 03:08:21.776000 1368102 torch/_inductor/select_algorithm.py:1696] [0/1] out of resource: shared memory, Required: 193536, Hardware limit: 166912. Reducing block sizes or `num_stages` may help.
+[default0]:[rank0]:W0927 03:08:21.806000 1368102 torch/_inductor/select_algorithm.py:1696] [0/1] out of resource: shared memory, Required: 234496, Hardware limit: 166912. Reducing block sizes or `num_stages` may help.
+[default0]:AUTOTUNE flex_attention_backward(1x32x8192x128, 1x8x8192x128, 1x8x8192x128, 1x32x8192, 1x32x8192, 1x32x8192x128, 1x32x8192x128, 1x8x8192x128, 1x1x64, 1x1x64x64, 1x1x64, 1x1x64x64, 1x1x64, 1x1x64x64, 1x1x64, 1x1x64x64, 1x8192x8192)
+[default0]:  triton_flex_attention_backward_15 15.4706 ms 100.0% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default0]:  triton_flex_attention_backward_24 15.9437 ms 97.0% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=64, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=4, num_warps=4
+[default0]:  triton_flex_attention_backward_23 16.3256 ms 94.8% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=64, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default0]:  triton_flex_attention_backward_22 16.3973 ms 94.3% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=64, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=1, num_warps=4
+[default0]:  triton_flex_attention_backward_11 18.2723 ms 84.7% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=32, BLOCK_N1=32, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default0]:  triton_flex_attention_backward_12 18.3347 ms 84.4% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=32, BLOCK_N1=32, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=4, num_warps=4
+[default0]:  triton_flex_attention_backward_14 19.4540 ms 79.5% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=1, num_warps=4
+[default0]:  triton_flex_attention_backward_17 20.6285 ms 75.0% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=5, num_warps=4
+[default0]:  triton_flex_attention_backward_16 20.6848 ms 74.8% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=4, num_warps=4
+[default0]:  triton_flex_attention_backward_13 23.9626 ms 64.6% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=32, BLOCK_N1=32, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=5, num_warps=4
+[default0]:SingleProcess AUTOTUNE benchmarking takes 27.3985 seconds and 51.8260 seconds precompiling for 20 choices
+[default1]:[rank1]: Traceback (most recent call last):
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/launcher.py", line 23, in <module>
+[default1]:[rank1]:     launch()
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/launcher.py", line 19, in launch
+[default1]:[rank1]:     run_exp()
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/train/tuner.py", line 110, in run_exp
+[default1]:[rank1]:     _training_function(config={"args": args, "callbacks": callbacks})
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/train/tuner.py", line 72, in _training_function
+[default1]:[rank1]:     run_sft(model_args, data_args, training_args, finetuning_args, generating_args, callbacks)
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/train/sft/workflow.py", line 100, in run_sft
+[default1]:[rank1]:     train_result = trainer.train(resume_from_checkpoint=training_args.resume_from_checkpoint)
+[default1]:[rank1]:                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/trainer.py", line 2238, in train
+[default1]:[rank1]:     return inner_training_loop(
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/trainer.py", line 2582, in _inner_training_loop
+[default1]:[rank1]:     tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+[default1]:[rank1]:                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/trainer.py", line 3845, in training_step
+[default1]:[rank1]:     self.accelerator.backward(loss, **kwargs)
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/accelerate/accelerator.py", line 2465, in backward
+[default1]:[rank1]:     self.deepspeed_engine_wrapped.backward(loss, **kwargs)
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/accelerate/utils/deepspeed.py", line 266, in backward
+[default1]:[rank1]:     self.engine.backward(loss, **kwargs)
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/utils/nvtx.py", line 20, in wrapped_fn
+[default1]:[rank1]:     ret_val = func(*args, **kwargs)
+[default1]:[rank1]:               ^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 2216, in backward
+[default1]:[rank1]:     self._do_optimizer_backward(loss, retain_graph)
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 2162, in _do_optimizer_backward
+[default1]:[rank1]:     self.optimizer.backward(loss, retain_graph=retain_graph)
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 2082, in backward
+[default1]:[rank1]:     self.loss_scaler.backward(loss.float(), retain_graph=retain_graph)
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/fp16/loss_scaler.py", line 63, in backward
+[default1]:[rank1]:     scaled_loss.backward(retain_graph=retain_graph)
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_tensor.py", line 626, in backward
+[default1]:[rank1]:     torch.autograd.backward(
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/autograd/__init__.py", line 347, in backward
+[default1]:[rank1]:     _engine_run_backward(
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/autograd/graph.py", line 823, in _engine_run_backward
+[default1]:[rank1]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/autograd/function.py", line 307, in apply
+[default1]:[rank1]:     return user_fn(self, *args)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/utils/checkpoint.py", line 321, in backward
+[default1]:[rank1]:     torch.autograd.backward(outputs_with_grad, args_with_grad)
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/autograd/__init__.py", line 347, in backward
+[default1]:[rank1]:     _engine_run_backward(
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/autograd/graph.py", line 823, in _engine_run_backward
+[default1]:[rank1]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 922, in grad_handling_hook
+[default1]:[rank1]:     self.process_gradients(param, i)
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 1435, in process_gradients
+[default1]:[rank1]:     self.reduce_ready_partitions_and_remove_grads(param, i)
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 1439, in reduce_ready_partitions_and_remove_grads
+[default1]:[rank1]:     self.reduce_independent_p_g_buckets_and_remove_grads(param, i)
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 950, in reduce_independent_p_g_buckets_and_remove_grads
+[default1]:[rank1]:     self.reduce_ipg_grads()
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 1402, in reduce_ipg_grads
+[default1]:[rank1]:     assert self.params_already_reduced[param_id] == False, \
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]: AssertionError: The parameter 503 has already been reduced.                     Gradient computed twice for this partition.                     Multiple gradient reduction is currently not supported
+[default0]:Traceback (most recent call last):
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/launcher.py", line 23, in <module>
+[default0]:    launch()
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/launcher.py", line 19, in launch
+[default0]:    run_exp()
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/train/tuner.py", line 110, in run_exp
+[default0]:    _training_function(config={"args": args, "callbacks": callbacks})
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/train/tuner.py", line 72, in _training_function
+[default0]:    run_sft(model_args, data_args, training_args, finetuning_args, generating_args, callbacks)
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/train/sft/workflow.py", line 100, in run_sft
+[default0]:    train_result = trainer.train(resume_from_checkpoint=training_args.resume_from_checkpoint)
+[default0]:                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/trainer.py", line 2238, in train
+[default0]:    return inner_training_loop(
+[default0]:           ^^^^^^^^^^^^^^^^^^^^
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/trainer.py", line 2582, in _inner_training_loop
+[default0]:    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+[default0]:                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/trainer.py", line 3845, in training_step
+[default0]:    self.accelerator.backward(loss, **kwargs)
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/accelerate/accelerator.py", line 2465, in backward
+[default0]:    self.deepspeed_engine_wrapped.backward(loss, **kwargs)
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/accelerate/utils/deepspeed.py", line 266, in backward
+[default0]:    self.engine.backward(loss, **kwargs)
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/utils/nvtx.py", line 20, in wrapped_fn
+[default0]:    ret_val = func(*args, **kwargs)
+[default0]:              ^^^^^^^^^^^^^^^^^^^^^
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 2216, in backward
+[default0]:    self._do_optimizer_backward(loss, retain_graph)
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 2162, in _do_optimizer_backward
+[default0]:    self.optimizer.backward(loss, retain_graph=retain_graph)
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 2082, in backward
+[default0]:    self.loss_scaler.backward(loss.float(), retain_graph=retain_graph)
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/fp16/loss_scaler.py", line 63, in backward
+[default0]:    scaled_loss.backward(retain_graph=retain_graph)
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_tensor.py", line 626, in backward
+[default0]:    torch.autograd.backward(
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/autograd/__init__.py", line 347, in backward
+[default0]:    _engine_run_backward(
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/autograd/graph.py", line 823, in _engine_run_backward
+[default0]:    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[default0]:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/autograd/function.py", line 307, in apply
+[default0]:    return user_fn(self, *args)
+[default0]:           ^^^^^^^^^^^^^^^^^^^^
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/utils/checkpoint.py", line 321, in backward
+[default0]:    torch.autograd.backward(outputs_with_grad, args_with_grad)
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/autograd/__init__.py", line 347, in backward
+[default0]:    _engine_run_backward(
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/autograd/graph.py", line 823, in _engine_run_backward
+[default0]:    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[default0]:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 922, in grad_handling_hook
+[default0]:    self.process_gradients(param, i)
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 1435, in process_gradients
+[default0]:    self.reduce_ready_partitions_and_remove_grads(param, i)
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 1439, in reduce_ready_partitions_and_remove_grads
+[default0]:    self.reduce_independent_p_g_buckets_and_remove_grads(param, i)
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 950, in reduce_independent_p_g_buckets_and_remove_grads
+[default0]:    self.reduce_ipg_grads()
+[default0]:  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 1402, in reduce_ipg_grads
+[default0]:    assert self.params_already_reduced[param_id] == False, \
+[default0]:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default0]:AssertionError: The parameter 503 has already been reduced.                     Gradient computed twice for this partition.                     Multiple gradient reduction is currently not supported
+[default0]:[rank0]: Traceback (most recent call last):
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/launcher.py", line 23, in <module>
+[default0]:[rank0]:     launch()
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/launcher.py", line 19, in launch
+[default0]:[rank0]:     run_exp()
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/train/tuner.py", line 110, in run_exp
+[default0]:[rank0]:     _training_function(config={"args": args, "callbacks": callbacks})
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/train/tuner.py", line 72, in _training_function
+[default0]:[rank0]:     run_sft(model_args, data_args, training_args, finetuning_args, generating_args, callbacks)
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/train/sft/workflow.py", line 100, in run_sft
+[default0]:[rank0]:     train_result = trainer.train(resume_from_checkpoint=training_args.resume_from_checkpoint)
+[default0]:[rank0]:                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/trainer.py", line 2238, in train
+[default0]:[rank0]:     return inner_training_loop(
+[default0]:[rank0]:            ^^^^^^^^^^^^^^^^^^^^
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/trainer.py", line 2582, in _inner_training_loop
+[default0]:[rank0]:     tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+[default0]:[rank0]:                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/trainer.py", line 3845, in training_step
+[default0]:[rank0]:     self.accelerator.backward(loss, **kwargs)
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/accelerate/accelerator.py", line 2465, in backward
+[default0]:[rank0]:     self.deepspeed_engine_wrapped.backward(loss, **kwargs)
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/accelerate/utils/deepspeed.py", line 266, in backward
+[default0]:[rank0]:     self.engine.backward(loss, **kwargs)
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/utils/nvtx.py", line 20, in wrapped_fn
+[default0]:[rank0]:     ret_val = func(*args, **kwargs)
+[default0]:[rank0]:               ^^^^^^^^^^^^^^^^^^^^^
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 2216, in backward
+[default0]:[rank0]:     self._do_optimizer_backward(loss, retain_graph)
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 2162, in _do_optimizer_backward
+[default0]:[rank0]:     self.optimizer.backward(loss, retain_graph=retain_graph)
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 2082, in backward
+[default0]:[rank0]:     self.loss_scaler.backward(loss.float(), retain_graph=retain_graph)
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/fp16/loss_scaler.py", line 63, in backward
+[default0]:[rank0]:     scaled_loss.backward(retain_graph=retain_graph)
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_tensor.py", line 626, in backward
+[default0]:[rank0]:     torch.autograd.backward(
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/autograd/__init__.py", line 347, in backward
+[default0]:[rank0]:     _engine_run_backward(
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/autograd/graph.py", line 823, in _engine_run_backward
+[default0]:[rank0]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[default0]:[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/autograd/function.py", line 307, in apply
+[default0]:[rank0]:     return user_fn(self, *args)
+[default0]:[rank0]:            ^^^^^^^^^^^^^^^^^^^^
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/utils/checkpoint.py", line 321, in backward
+[default0]:[rank0]:     torch.autograd.backward(outputs_with_grad, args_with_grad)
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/autograd/__init__.py", line 347, in backward
+[default0]:[rank0]:     _engine_run_backward(
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/autograd/graph.py", line 823, in _engine_run_backward
+[default0]:[rank0]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[default0]:[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 922, in grad_handling_hook
+[default0]:[rank0]:     self.process_gradients(param, i)
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 1435, in process_gradients
+[default0]:[rank0]:     self.reduce_ready_partitions_and_remove_grads(param, i)
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 1439, in reduce_ready_partitions_and_remove_grads
+[default0]:[rank0]:     self.reduce_independent_p_g_buckets_and_remove_grads(param, i)
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 950, in reduce_independent_p_g_buckets_and_remove_grads
+[default0]:[rank0]:     self.reduce_ipg_grads()
+[default0]:[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 1402, in reduce_ipg_grads
+[default0]:[rank0]:     assert self.params_already_reduced[param_id] == False, \
+[default0]:[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default0]:[rank0]: AssertionError: The parameter 503 has already been reduced.                     Gradient computed twice for this partition.                     Multiple gradient reduction is currently not supported
+[default0]:[rank0]:[W927 03:08:29.617766151 ProcessGroupNCCL.cpp:1496] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+E0927 03:08:31.484000 1368081 torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 0 (pid: 1368102) of binary: /work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/bin/python3
+Traceback (most recent call last):
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/bin/torchrun", line 6, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/distributed/run.py", line 918, in main
+    run(args)
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+src/llamafactory/launcher.py FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2026-09-27_03:08:31
+  host      : gpu016.unity.rc.umass.edu
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 1368103)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-09-27_03:08:31
+  host      : gpu016.unity.rc.umass.edu
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 1368102)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

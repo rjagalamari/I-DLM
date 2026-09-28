@@ -152,7 +152,9 @@ class CustomSeq2SeqTrainer(Seq2SeqTrainer):
                 shifted_labels = F.pad(shifted_labels, (0, seq_len - shifted_labels.shape[1]), value=-100)
 
             clean_logits = unwrapped_model.lm_head(
-                outputs["hidden_states"][-1][:, seq_len : seq_len + seq_len, :]
+                outputs["hidden_states"][-1][:, seq_len : seq_len + seq_len, :].to(
+                    unwrapped_model.lm_head.weight.dtype
+                )
             )
             ce_logits = clean_logits.view(-1, clean_logits.size(-1))
             ce_labels = shifted_labels.view(-1)
@@ -187,7 +189,10 @@ class CustomSeq2SeqTrainer(Seq2SeqTrainer):
             "train/combined_loss": total_loss.item(),
             "train/alpha": alpha,
         }
-        relay_norm = unwrapped_model.model.relay_layer_norm
+
+        sdar_model = unwrapped_model.get_base_model()
+        relay_wrapper = sdar_model.model.relay_layer_norm
+        relay_norm = relay_wrapper.modules_to_save[relay_wrapper.active_adapter]
 
         with torch.no_grad():
             log_dict.update({
@@ -243,7 +248,8 @@ class CustomSeq2SeqTrainer(Seq2SeqTrainer):
     def _verify_relay_drafts(
       self, model, noisy_hidden, clean_hidden, inputs
     ):
-        base = getattr(model, "module", model)
+        base = getattr(model, "module", model)  # PEFT model
+        backbone = base.get_base_model().model
         device = noisy_hidden.device
 
         labels = inputs["labels"].to(device)
@@ -292,24 +298,32 @@ class CustomSeq2SeqTrainer(Seq2SeqTrainer):
         position_ids = torch.arange(seq_len, device=device)
         position_ids = position_ids.repeat(2).unsqueeze(0).expand(input_ids.shape[0], -1)
 
-        base.model.eval()
-        verify_outputs = base.model(
-            input_ids=verify_input_ids,
-            attention_mask=verify_attention_mask,
-            position_ids=position_ids,
-            use_cache=False,
-            return_dict=True,
-            prev_latent=None,
-        )
-        base.model.train()
-
         
-        seq_len = input_ids.shape[1]
-        verify_hidden = verify_outputs.last_hidden_state[:, :seq_len, :]
+        sdar_model = base.get_base_model()
+        backbone = sdar_model.model
+        was_training = backbone.training
 
-        clean_logits = base.lm_head(
-            verify_hidden[valid_positions].to(lm_dtype)
-        )
+        try:
+            backbone.eval()
+
+            with base.disable_adapter():
+                verify_outputs = backbone(
+                input_ids=verify_input_ids,
+                attention_mask=verify_attention_mask,
+                position_ids=position_ids,
+                use_cache=False,
+                output_hidden_states=False,
+                output_attentions=False,
+                return_dict=True,
+                prev_latent=None,
+            )
+
+                verify_hidden = verify_outputs.last_hidden_state[:, :seq_len, :]
+                clean_logits = sdar_model.lm_head(
+                    verify_hidden[valid_positions].to(lm_dtype)
+                )
+        finally:
+            backbone.train(was_training)
 
 
         # replacing the wrong token from clean half...

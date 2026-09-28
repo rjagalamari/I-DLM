@@ -1,0 +1,50 @@
+started Sat Sep 26 03:53:16 AM UTC 2026 on gpu014
+Sat Sep 26 03:53:16 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-80GB          On  |   00000000:3D:00.0 Off |                    0 |
+| N/A   33C    P0             66W /  500W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA A100-SXM4-80GB          On  |   00000000:4E:00.0 Off |                    0 |
+| N/A   34C    P0             60W /  500W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+[2026-09-26 03:53:32,161] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (override)
+[2026-09-26 03:53:32,162] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (override)
+[2026-09-26 03:53:36,659] [INFO] [comm.py:669:init_distributed] cdb=None
+[2026-09-26 03:53:36,663] [INFO] [comm.py:669:init_distributed] cdb=None
+[2026-09-26 03:53:36,664] [INFO] [comm.py:700:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+[INFO|2026-09-26 03:53:36] llamafactory.hparams.parser:143 >> Set `ddp_find_unused_parameters` to False in DDP training since LoRA is enabled.
+[INFO|2026-09-26 03:53:36] llamafactory.hparams.parser:414 >> Process rank: 0, world size: 2, device: cuda:0, distributed training: True, compute dtype: torch.bfloat16
+[INFO|2026-09-26 03:53:36] llamafactory.hparams.parser:414 >> Process rank: 1, world size: 2, device: cuda:1, distributed training: True, compute dtype: torch.bfloat16
+[INFO|2026-09-26 03:53:37] llamafactory.data.template:143 >> Replace eos token: <|im_end|>.
+[INFO|2026-09-26 03:53:37] llamafactory.model.model_utils.kv_cache:143 >> KV cache is disabled during training.
+🚨 `store_kv` is part of SDARModel.forward's signature, but not documented. Make sure to add it to the docstring of the function in /work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/hf_cache/modules/transformers_modules/Qwen3-8B-b7-allmasked/modeling_sdar.py.
+🚨 `prev_latent` is part of SDARModel.forward's signature, but not documented. Make sure to add it to the docstring of the function in /work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/hf_cache/modules/transformers_modules/Qwen3-8B-b7-allmasked/modeling_sdar.py.🚨 `store_kv` is part of SDARModel.forward's signature, but not documented. Make sure to add it to the docstring of the function in /work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/hf_cache/modules/transformers_modules/Qwen3-8B-b7-allmasked/modeling_sdar.py.
+🚨 `prev_latent` is part of SDARModel.forward's signature, but not documented. Make sure to add it to the docstring of the function in /work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/hf_cache/modules/transformers_modules/Qwen3-8B-b7-allmasked/modeling_sdar.py.
+
+🚨 `clean_input_ids` is part of SDARForCausalLM.forward's signature, but not documented. Make sure to add it to the docstring of the function in /work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/hf_cache/modules/transformers_modules/Qwen3-8B-b7-allmasked/modeling_sdar.py.
+🚨 `prev_latent` is part of SDARForCausalLM.forward's signature, but not documented. Make sure to add it to the docstring of the function in /work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/hf_cache/modules/transformers_modules/Qwen3-8B-b7-allmasked/modeling_sdar.py.
+🚨 `clean_input_ids` is part of SDARForCausalLM.forward's signature, but not documented. Make sure to add it to the docstring of the function in /work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/hf_cache/modules/transformers_modules/Qwen3-8B-b7-allmasked/modeling_sdar.py.
+🚨 `prev_latent` is part of SDARForCausalLM.forward's signature, but not documented. Make sure to add it to the docstring of the function in /work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/hf_cache/modules/transformers_modules/Qwen3-8B-b7-allmasked/modeling_sdar.py.
+[INFO|2026-09-26 03:54:34] llamafactory.model.model_utils.checkpointing:143 >> Gradient checkpointing enabled.
+[INFO|2026-09-26 03:54:34] llamafactory.model.model_utils.attention:143 >> Using torch SDPA for faster training and inference.
+[INFO|2026-09-26 03:54:34] llamafactory.model.adapter:143 >> Upcasting trainable params to float32.
+[INFO|2026-09-26 03:54:34] llamafactory.model.adapter:143 >> Fine-tuning method: LoRA
+[INFO|2026-09-26 03:54:34] llamafactory.model.model_utils.misc:143 >> Found linear modules: k_proj,gate_proj,v_proj,q_proj,o_proj,up_proj,down_proj
+[INFO|2026-09-26 03:54:37] llamafactory.model.loader:143 >> trainable params: 349,184,000 || all params: 8,539,927,552 || trainable%: 4.0888
+[INFO|2026-09-26 03:54:37] llamafactory.data.loader:143 >> Loading dataset open-thoughts/OpenThoughts3-1.2M...

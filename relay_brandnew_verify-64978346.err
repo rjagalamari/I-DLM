@@ -1,0 +1,703 @@
+Removing libiconv version 1.17
+Removing xz version 5.4.6
+Removing zlib-ng version 2.1.6
+Removing libxml2 version 2.10.3
+Removing cuda version 12.4.1
+Loading libiconv version 1.17
+Loading xz version 5.4.6
+Loading zlib-ng version 2.1.6
+Loading libxml2 version 2.10.3
+Loading cuda version 12.4.1
+W0928 02:20:51.121000 2757857 torch/distributed/run.py:792] 
+W0928 02:20:51.121000 2757857 torch/distributed/run.py:792] *****************************************
+W0928 02:20:51.121000 2757857 torch/distributed/run.py:792] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0928 02:20:51.121000 2757857 torch/distributed/run.py:792] *****************************************
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-28 02:21:05,443 >> loading file vocab.json
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-28 02:21:05,443 >> loading file merges.txt
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-28 02:21:05,443 >> loading file added_tokens.json
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-28 02:21:05,443 >> loading file special_tokens_map.json
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-28 02:21:05,443 >> loading file tokenizer_config.json
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-28 02:21:05,443 >> loading file tokenizer.json
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-28 02:21:05,443 >> loading file chat_template.jinja
+[default0]:[INFO|tokenization_utils_base.py:2336] 2026-09-28 02:21:05,618 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[default0]:[INFO|configuration_utils.py:750] 2026-09-28 02:21:05,621 >> loading configuration file ../model/Qwen3-8B-b7-allmasked/config.json
+[default0]:[INFO|configuration_utils.py:750] 2026-09-28 02:21:05,639 >> loading configuration file ../model/Qwen3-8B-b7-allmasked/config.json
+[default0]:[INFO|configuration_utils.py:817] 2026-09-28 02:21:05,640 >> Model config SDARConfig {
+[default0]:  "architectures": [
+[default0]:    "SDARForCausalLM"
+[default0]:  ],
+[default0]:  "attention_bias": false,
+[default0]:  "attention_dropout": 0.0,
+[default0]:  "auto_map": {
+[default0]:    "AutoConfig": "configuration_sdar.SDARConfig",
+[default0]:    "AutoModel": "modeling_sdar.SDARModel",
+[default0]:    "AutoModelForCausalLM": "modeling_sdar.SDARForCausalLM"
+[default0]:  },
+[default0]:  "block_size": 7,
+[default0]:  "bos_token_id": 151643,
+[default0]:  "eos_token_id": 151645,
+[default0]:  "fuse_cross_entropy": true,
+[default0]:  "head_dim": 128,
+[default0]:  "hidden_act": "silu",
+[default0]:  "hidden_size": 4096,
+[default0]:  "initializer_range": 0.02,
+[default0]:  "intermediate_size": 12288,
+[default0]:  "mask_token_id": 151669,
+[default0]:  "max_position_embeddings": 40960,
+[default0]:  "max_window_layers": 36,
+[default0]:  "model_type": "sdar",
+[default0]:  "num_attention_heads": 32,
+[default0]:  "num_hidden_layers": 36,
+[default0]:  "num_key_value_heads": 8,
+[default0]:  "rms_norm_eps": 1e-06,
+[default0]:  "rope_scaling": null,
+[default0]:  "rope_theta": 1000000,
+[default0]:  "sliding_window": null,
+[default0]:  "tie_word_embeddings": false,
+[default0]:  "torch_dtype": "bfloat16",
+[default0]:  "transformers_version": "4.55.0",
+[default0]:  "use_cache": false,
+[default0]:  "use_regular_causal": true,
+[default0]:  "use_sliding_window": false,
+[default0]:  "vocab_size": 151936
+[default0]:}
+[default0]:
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-28 02:21:05,643 >> loading file vocab.json
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-28 02:21:05,643 >> loading file merges.txt
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-28 02:21:05,643 >> loading file added_tokens.json
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-28 02:21:05,644 >> loading file special_tokens_map.json
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-28 02:21:05,644 >> loading file tokenizer_config.json
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-28 02:21:05,644 >> loading file tokenizer.json
+[default0]:[INFO|tokenization_utils_base.py:2065] 2026-09-28 02:21:05,644 >> loading file chat_template.jinja
+[default0]:[INFO|tokenization_utils_base.py:2336] 2026-09-28 02:21:05,812 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[default0]:[INFO|configuration_utils.py:750] 2026-09-28 02:21:05,833 >> loading configuration file ../model/Qwen3-8B-b7-allmasked/config.json
+[default0]:[INFO|configuration_utils.py:750] 2026-09-28 02:21:05,836 >> loading configuration file ../model/Qwen3-8B-b7-allmasked/config.json
+[default0]:[INFO|configuration_utils.py:817] 2026-09-28 02:21:05,837 >> Model config SDARConfig {
+[default0]:  "architectures": [
+[default0]:    "SDARForCausalLM"
+[default0]:  ],
+[default0]:  "attention_bias": false,
+[default0]:  "attention_dropout": 0.0,
+[default0]:  "auto_map": {
+[default0]:    "AutoConfig": "configuration_sdar.SDARConfig",
+[default0]:    "AutoModel": "modeling_sdar.SDARModel",
+[default0]:    "AutoModelForCausalLM": "modeling_sdar.SDARForCausalLM"
+[default0]:  },
+[default0]:  "block_size": 7,
+[default0]:  "bos_token_id": 151643,
+[default0]:  "eos_token_id": 151645,
+[default0]:  "fuse_cross_entropy": true,
+[default0]:  "head_dim": 128,
+[default0]:  "hidden_act": "silu",
+[default0]:  "hidden_size": 4096,
+[default0]:  "initializer_range": 0.02,
+[default0]:  "intermediate_size": 12288,
+[default0]:  "mask_token_id": 151669,
+[default0]:  "max_position_embeddings": 40960,
+[default0]:  "max_window_layers": 36,
+[default0]:  "model_type": "sdar",
+[default0]:  "num_attention_heads": 32,
+[default0]:  "num_hidden_layers": 36,
+[default0]:  "num_key_value_heads": 8,
+[default0]:  "rms_norm_eps": 1e-06,
+[default0]:  "rope_scaling": null,
+[default0]:  "rope_theta": 1000000,
+[default0]:  "sliding_window": null,
+[default0]:  "tie_word_embeddings": false,
+[default0]:  "torch_dtype": "bfloat16",
+[default0]:  "transformers_version": "4.55.0",
+[default0]:  "use_cache": false,
+[default0]:  "use_regular_causal": true,
+[default0]:  "use_sliding_window": false,
+[default0]:  "vocab_size": 151936
+[default0]:}
+[default0]:
+[default0]:[INFO|modeling_utils.py:1305] 2026-09-28 02:21:06,302 >> loading weights file ../model/Qwen3-8B-b7-allmasked/model.safetensors.index.json
+[default0]:[INFO|modeling_utils.py:2411] 2026-09-28 02:21:06,303 >> Instantiating SDARForCausalLM model under default dtype torch.bfloat16.
+[default0]:[INFO|configuration_utils.py:1098] 2026-09-28 02:21:06,304 >> Generate config GenerationConfig {
+[default0]:  "bos_token_id": 151643,
+[default0]:  "eos_token_id": 151645,
+[default0]:  "use_cache": false
+[default0]:}
+[default0]:
+[default1]:
+[default1]:Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][default0]:
+[default0]:Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][default1]:
+[default1]:Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.21it/s][default0]:
+[default0]:Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.31it/s][default1]:
+[default1]:Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.23it/s][default0]:
+[default0]:Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.33it/s][default1]:
+[default1]:Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.10it/s][default0]:
+[default0]:Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.14it/s][default1]:
+[default1]:Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.47it/s]
+[default1]:Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.34it/s]
+[default1]:Some weights of SDARForCausalLM were not initialized from the model checkpoint at ../model/Qwen3-8B-b7-allmasked and are newly initialized: ['model.relay_layer_norm.bias', 'model.relay_layer_norm.weight']
+[default1]:You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+[default0]:
+[default0]:Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.53it/s]
+[default0]:Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.41it/s]
+[default0]:[INFO|modeling_utils.py:5606] 2026-09-28 02:21:09,335 >> All model checkpoint weights were used when initializing SDARForCausalLM.
+[default0]:
+[default0]:[WARNING|modeling_utils.py:5608] 2026-09-28 02:21:09,335 >> Some weights of SDARForCausalLM were not initialized from the model checkpoint at ../model/Qwen3-8B-b7-allmasked and are newly initialized: ['model.relay_layer_norm.bias', 'model.relay_layer_norm.weight']
+[default0]:You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+[default0]:[INFO|configuration_utils.py:1051] 2026-09-28 02:21:09,337 >> loading configuration file ../model/Qwen3-8B-b7-allmasked/generation_config.json
+[default0]:[INFO|configuration_utils.py:1098] 2026-09-28 02:21:09,338 >> Generate config GenerationConfig {
+[default0]:  "bos_token_id": 151643,
+[default0]:  "do_sample": true,
+[default0]:  "eos_token_id": [
+[default0]:    151645,
+[default0]:    151643
+[default0]:  ],
+[default0]:  "pad_token_id": 151643,
+[default0]:  "temperature": 0.6,
+[default0]:  "top_k": 20,
+[default0]:  "top_p": 0.95
+[default0]:}
+[default0]:
+[default1]:[rank1]:[W928 02:21:12.140649566 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 1]  using GPU 1 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[default0]:[rank0]:[W928 02:21:13.854812331 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[default0]:[INFO|trainer.py:757] 2026-09-28 02:21:16,449 >> Using auto half precision backend
+[default0]:[INFO|trainer.py:2433] 2026-09-28 02:21:20,859 >> ***** Running training *****
+[default0]:[INFO|trainer.py:2434] 2026-09-28 02:21:20,859 >>   Num examples = 16,000
+[default0]:[INFO|trainer.py:2435] 2026-09-28 02:21:20,859 >>   Num Epochs = 1
+[default0]:[INFO|trainer.py:2436] 2026-09-28 02:21:20,859 >>   Instantaneous batch size per device = 1
+[default0]:[INFO|trainer.py:2439] 2026-09-28 02:21:20,859 >>   Total train batch size (w. parallel, distributed & accumulation) = 32
+[default0]:[INFO|trainer.py:2440] 2026-09-28 02:21:20,859 >>   Gradient Accumulation steps = 16
+[default0]:[INFO|trainer.py:2441] 2026-09-28 02:21:20,859 >>   Total optimization steps = 500
+[default0]:[INFO|trainer.py:2442] 2026-09-28 02:21:20,863 >>   Number of trainable parameters = 349,184,000
+[default0]:[INFO|integration_utils.py:866] 2026-09-28 02:21:20,867 >> Automatic Weights & Biases logging enabled, to disable set os.environ["WANDB_DISABLED"] = "true"
+[default0]:wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /home/rjagalamari_umass_edu/.netrc.
+[default0]:wandb: Currently logged in as: rjagalamari (rjagalamari-university-of-massachusetts) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+[default0]:wandb: Tracking run with wandb version 0.28.2
+[default0]:wandb: Run data is saved locally in /home/rjagalamari_umass_edu/wandb/wandb/run-20260928_022121-ssxj63c8
+[default0]:wandb: Run `wandb offline` to turn off syncing.
+[default0]:wandb: Syncing run relay_brandnew_verify
+[default0]:wandb: ⭐️ View project at https://wandb.ai/rjagalamari-university-of-massachusetts/idlm-training
+[default0]:wandb: 🚀 View run at https://wandb.ai/rjagalamari-university-of-massachusetts/idlm-training/runs/ssxj63c8
+[default0]:
+[default0]:  0%|          | 0/500 [00:00<?, ?it/s][default1]:[rank1]:E0928 02:21:33.080000 2757936 torch/_inductor/select_algorithm.py:1477] [0/0] Exception out of resource: shared memory, Required: 180224, Hardware limit: 166912. Reducing block sizes or `num_stages` may help. for benchmark choice TritonTemplateCaller(/tmp/rjagalamari_umass_edu/idlm_64978346/inductor/vx/cvxpw2myz2vx36irlvjvafcldsu25gcbsfyyuswus4gek2gtqhar.py, BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=64, BLOCK_N=128, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4)
+[default0]:[rank0]:E0928 02:21:33.262000 2757935 torch/_inductor/select_algorithm.py:1477] [0/0] Exception out of resource: shared memory, Required: 180224, Hardware limit: 166912. Reducing block sizes or `num_stages` may help. for benchmark choice TritonTemplateCaller(/tmp/rjagalamari_umass_edu/idlm_64978346/inductor/cf/ccf5tz7v4qfci46nvaas7fagbxsfcn7zbpxoxkkmkvjeycqdxc2g.py, BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=64, BLOCK_N=128, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4)
+[default1]:[rank1]:E0928 02:21:33.888000 2757936 torch/_inductor/select_algorithm.py:1477] [0/0] Exception out of resource: shared memory, Required: 205824, Hardware limit: 166912. Reducing block sizes or `num_stages` may help. for benchmark choice TritonTemplateCaller(/tmp/rjagalamari_umass_edu/idlm_64978346/inductor/u2/cu2t5vlskecykfxj7js6wjqztbvvgwqx3gjmt5fee47b7p2pkvhz.py, BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=128, BLOCK_N=128, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4)
+[default1]:[rank1]:W0928 02:21:34.278000 2757936 torch/_inductor/select_algorithm.py:1696] [0/0] out of resource: shared memory, Required: 205824, Hardware limit: 166912. Reducing block sizes or `num_stages` may help.
+[default1]:[rank1]:W0928 02:21:34.296000 2757936 torch/_inductor/select_algorithm.py:1696] [0/0] out of resource: shared memory, Required: 180224, Hardware limit: 166912. Reducing block sizes or `num_stages` may help.
+[default1]:AUTOTUNE flex_attention(1x32x8192x128, 1x8x8192x128, 1x8x8192x128, 1x32x8192, 1x1x64, 1x1x64x64, 1x1x64, 1x1x64x64, 1x8192x8192)
+[default1]:  triton_flex_attention_0 3.6690 ms 100.0% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=128, BLOCK_N=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=8
+[default1]:  triton_flex_attention_1 4.9848 ms 73.6% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=128, BLOCK_N=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default1]:  triton_flex_attention_4 5.7989 ms 63.3% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=64, BLOCK_N=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default1]:  triton_flex_attention_2 inf ms 0.0% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=128, BLOCK_N=128, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default1]:  triton_flex_attention_3 inf ms 0.0% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=64, BLOCK_N=128, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default1]:SingleProcess AUTOTUNE benchmarking takes 0.5769 seconds and 7.4227 seconds precompiling for 5 choices
+[default0]:[rank0]:E0928 02:21:34.414000 2757935 torch/_inductor/select_algorithm.py:1477] [0/0] Exception out of resource: shared memory, Required: 205824, Hardware limit: 166912. Reducing block sizes or `num_stages` may help. for benchmark choice TritonTemplateCaller(/tmp/rjagalamari_umass_edu/idlm_64978346/inductor/2z/c2zes4kbpnnbgdvg4ci2ktira7cofqwjsmnyldggyvbprb467jdt.py, BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=128, BLOCK_N=128, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4)
+[default0]:[rank0]:W0928 02:21:34.806000 2757935 torch/_inductor/select_algorithm.py:1696] [0/0] out of resource: shared memory, Required: 205824, Hardware limit: 166912. Reducing block sizes or `num_stages` may help.
+[default0]:[rank0]:W0928 02:21:34.823000 2757935 torch/_inductor/select_algorithm.py:1696] [0/0] out of resource: shared memory, Required: 180224, Hardware limit: 166912. Reducing block sizes or `num_stages` may help.
+[default0]:AUTOTUNE flex_attention(1x32x8192x128, 1x8x8192x128, 1x8x8192x128, 1x32x8192, 1x1x64, 1x1x64x64, 1x1x64, 1x1x64x64, 1x8192x8192)
+[default0]:  triton_flex_attention_0 4.1073 ms 100.0% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=128, BLOCK_N=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=8
+[default0]:  triton_flex_attention_1 5.0452 ms 81.4% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=128, BLOCK_N=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default0]:  triton_flex_attention_4 5.7487 ms 71.4% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=64, BLOCK_N=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default0]:  triton_flex_attention_2 inf ms 0.0% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=128, BLOCK_N=128, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default0]:  triton_flex_attention_3 inf ms 0.0% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=64, BLOCK_N=128, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default0]:SingleProcess AUTOTUNE benchmarking takes 0.5815 seconds and 7.9249 seconds precompiling for 5 choices
+[default0]:
+[default0]:                                       
+[default0]:
+[default0]:  0%|          | 0/500 [00:43<?, ?it/s][default1]:[rank1]:E0928 02:22:57.577000 2757936 torch/_inductor/select_algorithm.py:1477] [0/0] Exception out of resource: shared memory, Required: 188416, Hardware limit: 166912. Reducing block sizes or `num_stages` may help. for benchmark choice TritonTemplateCaller(/tmp/rjagalamari_umass_edu/idlm_64978346/inductor/nc/cnctss2ronjytiorwldf72ay7anw7ca2uljaajgokynyw2qvq4pf.py, BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=64, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=5, num_warps=4)
+[default0]:[rank0]:E0928 02:22:58.395000 2757935 torch/_inductor/select_algorithm.py:1477] [0/0] Exception out of resource: shared memory, Required: 188416, Hardware limit: 166912. Reducing block sizes or `num_stages` may help. for benchmark choice TritonTemplateCaller(/tmp/rjagalamari_umass_edu/idlm_64978346/inductor/zt/cztkyej3exysdwe3nbytp5p2j3tsx4uu26zuozdq3bk3fzoo4hia.py, BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=64, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=5, num_warps=4)
+[default1]:[rank1]:E0928 02:22:59.539000 2757936 torch/_inductor/select_algorithm.py:1477] [0/0] Exception out of resource: shared memory, Required: 234496, Hardware limit: 166912. Reducing block sizes or `num_stages` may help. for benchmark choice TritonTemplateCaller(/tmp/rjagalamari_umass_edu/idlm_64978346/inductor/2k/c2kp7brvecgoxreajqu5gfmqobypkawx4lhl73kmcptxhqt6322w.py, BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=64, BLOCK_M2=128, BLOCK_N1=128, BLOCK_N2=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=5, num_warps=4)
+[default0]:[rank0]:E0928 02:23:00.266000 2757935 torch/_inductor/select_algorithm.py:1477] [0/0] Exception out of resource: shared memory, Required: 193536, Hardware limit: 166912. Reducing block sizes or `num_stages` may help. for benchmark choice TritonTemplateCaller(/tmp/rjagalamari_umass_edu/idlm_64978346/inductor/ax/caxshw2lp32cbyxg67y5stbhd25gr7ye2p4fehx5c6452f7zrhdg.py, BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=64, BLOCK_M2=128, BLOCK_N1=128, BLOCK_N2=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=4, num_warps=4)
+[default1]:[rank1]:E0928 02:23:00.351000 2757936 torch/_inductor/select_algorithm.py:1477] [0/0] Exception out of resource: shared memory, Required: 193536, Hardware limit: 166912. Reducing block sizes or `num_stages` may help. for benchmark choice TritonTemplateCaller(/tmp/rjagalamari_umass_edu/idlm_64978346/inductor/na/cnaaxf7epqti7pz4dlug2eunipplrpk2upeoksouh2bnrn2ahy7d.py, BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=64, BLOCK_M2=128, BLOCK_N1=128, BLOCK_N2=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=4, num_warps=4)
+[default0]:[rank0]:E0928 02:23:00.378000 2757935 torch/_inductor/select_algorithm.py:1477] [0/0] Exception out of resource: shared memory, Required: 234496, Hardware limit: 166912. Reducing block sizes or `num_stages` may help. for benchmark choice TritonTemplateCaller(/tmp/rjagalamari_umass_edu/idlm_64978346/inductor/4q/c4qgpw55tpgqvk3gbdtg74buuc2c3f4j555wmvehgvri23fnztzi.py, BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=64, BLOCK_M2=128, BLOCK_N1=128, BLOCK_N2=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=5, num_warps=4)
+[default1]:[rank1]:W0928 02:23:19.078000 2757936 torch/_inductor/select_algorithm.py:1696] [0/0] out of resource: shared memory, Required: 188416, Hardware limit: 166912. Reducing block sizes or `num_stages` may help.
+[default0]:[rank0]:W0928 02:23:19.670000 2757935 torch/_inductor/select_algorithm.py:1696] [0/0] out of resource: shared memory, Required: 188416, Hardware limit: 166912. Reducing block sizes or `num_stages` may help.
+[default1]:[rank1]:W0928 02:23:27.666000 2757936 torch/_inductor/select_algorithm.py:1696] [0/0] out of resource: shared memory, Required: 193536, Hardware limit: 166912. Reducing block sizes or `num_stages` may help.
+[default1]:[rank1]:W0928 02:23:27.695000 2757936 torch/_inductor/select_algorithm.py:1696] [0/0] out of resource: shared memory, Required: 234496, Hardware limit: 166912. Reducing block sizes or `num_stages` may help.
+[default1]:AUTOTUNE flex_attention_backward(1x32x8192x128, 1x8x8192x128, 1x8x8192x128, 1x32x8192, 1x32x8192, 1x32x8192x128, 1x32x8192x128, 1x8x8192x128, 1x1x64, 1x1x64x64, 1x1x64, 1x1x64x64, 1x1x64, 1x1x64x64, 1x1x64, 1x1x64x64, 1x8192x8192)
+[default1]:  triton_flex_attention_backward_10 15.5085 ms 100.0% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default1]:  triton_flex_attention_backward_19 15.9539 ms 97.2% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=64, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=4, num_warps=4
+[default1]:  triton_flex_attention_backward_18 16.3543 ms 94.8% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=64, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default1]:  triton_flex_attention_backward_17 16.4506 ms 94.3% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=64, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=1, num_warps=4
+[default1]:  triton_flex_attention_backward_6 18.3419 ms 84.6% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=32, BLOCK_N1=32, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default1]:  triton_flex_attention_backward_7 18.4084 ms 84.2% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=32, BLOCK_N1=32, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=4, num_warps=4
+[default1]:  triton_flex_attention_backward_9 19.5103 ms 79.5% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=1, num_warps=4
+[default1]:  triton_flex_attention_backward_12 20.6930 ms 74.9% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=5, num_warps=4
+[default1]:  triton_flex_attention_backward_11 20.7452 ms 74.8% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=4, num_warps=4
+[default1]:  triton_flex_attention_backward_5 22.7707 ms 68.1% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=32, BLOCK_N1=32, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=1, num_warps=4
+[default1]:SingleProcess AUTOTUNE benchmarking takes 27.3409 seconds and 50.8662 seconds precompiling for 20 choices
+[default0]:[rank0]:W0928 02:23:28.232000 2757935 torch/_inductor/select_algorithm.py:1696] [0/0] out of resource: shared memory, Required: 193536, Hardware limit: 166912. Reducing block sizes or `num_stages` may help.
+[default0]:[rank0]:W0928 02:23:28.262000 2757935 torch/_inductor/select_algorithm.py:1696] [0/0] out of resource: shared memory, Required: 234496, Hardware limit: 166912. Reducing block sizes or `num_stages` may help.
+[default0]:AUTOTUNE flex_attention_backward(1x32x8192x128, 1x8x8192x128, 1x8x8192x128, 1x32x8192, 1x32x8192, 1x32x8192x128, 1x32x8192x128, 1x8x8192x128, 1x1x64, 1x1x64x64, 1x1x64, 1x1x64x64, 1x1x64, 1x1x64x64, 1x1x64, 1x1x64x64, 1x8192x8192)
+[default0]:  triton_flex_attention_backward_10 15.4204 ms 100.0% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default0]:  triton_flex_attention_backward_19 15.8976 ms 97.0% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=64, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=4, num_warps=4
+[default0]:  triton_flex_attention_backward_18 16.2806 ms 94.7% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=64, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default0]:  triton_flex_attention_backward_17 16.3512 ms 94.3% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=64, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=1, num_warps=4
+[default0]:  triton_flex_attention_backward_6 18.2129 ms 84.7% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=32, BLOCK_N1=32, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+[default0]:  triton_flex_attention_backward_7 18.2743 ms 84.4% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=32, BLOCK_N1=32, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=4, num_warps=4
+[default0]:  triton_flex_attention_backward_9 19.3966 ms 79.5% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=1, num_warps=4
+[default0]:  triton_flex_attention_backward_12 20.5742 ms 75.0% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=5, num_warps=4
+[default0]:  triton_flex_attention_backward_11 20.6295 ms 74.7% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=64, BLOCK_N1=64, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=4, num_warps=4
+[default0]:  triton_flex_attention_backward_5 22.6417 ms 68.1% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M1=32, BLOCK_M2=32, BLOCK_N1=32, BLOCK_N2=32, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=1, num_warps=4
+[default0]:SingleProcess AUTOTUNE benchmarking takes 27.2957 seconds and 52.0379 seconds precompiling for 20 choices
+[default0]:
+[default0]:                                       
+[default0]:
+[default0]:  0%|          | 0/500 [02:19<?, ?it/s][default0]:
+[default0]:                                       
+[default0]:
+[default0]:  0%|          | 0/500 [02:30<?, ?it/s][default0]:
+[default0]:                                       
+[default0]:
+[default0]:  0%|          | 0/500 [02:41<?, ?it/s][default0]:
+[default0]:                                       
+[default0]:
+[default0]:  0%|          | 0/500 [02:52<?, ?it/s][default0]:
+[default0]:                                       
+[default0]:
+[default0]:  0%|          | 0/500 [03:03<?, ?it/s][default0]:
+[default0]:                                       
+[default0]:
+[default0]:  0%|          | 0/500 [03:15<?, ?it/s][default0]:
+[default0]:                                       
+[default0]:
+[default0]:  0%|          | 0/500 [03:26<?, ?it/s][default0]:
+[default0]:                                       
+[default0]:
+[default0]:  0%|          | 0/500 [03:37<?, ?it/s][default0]:
+[default0]:                                       
+[default0]:
+[default0]:  0%|          | 0/500 [03:48<?, ?it/s][default0]:
+[default0]:                                       
+[default0]:
+[default0]:  0%|          | 0/500 [03:59<?, ?it/s][default0]:
+[default0]:                                       
+[default0]:
+[default0]:  0%|          | 0/500 [04:10<?, ?it/s][default0]:
+[default0]:                                       
+[default0]:
+[default0]:  0%|          | 0/500 [04:21<?, ?it/s][default0]:
+[default0]:                                       
+[default0]:
+[default0]:  0%|          | 0/500 [04:32<?, ?it/s][default0]:
+[default0]:                                       
+[default0]:
+[default0]:  0%|          | 0/500 [04:43<?, ?it/s][default0]:
+[default0]:                                       
+[default0]:
+[default0]:  0%|          | 0/500 [04:54<?, ?it/s][default0]:
+[default0]:  0%|          | 1/500 [04:58<41:22:57, 298.55s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 1/500 [05:05<41:22:57, 298.55s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 1/500 [05:16<41:22:57, 298.55s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 1/500 [05:27<41:22:57, 298.55s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 1/500 [05:38<41:22:57, 298.55s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 1/500 [05:49<41:22:57, 298.55s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 1/500 [06:00<41:22:57, 298.55s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 1/500 [06:11<41:22:57, 298.55s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 1/500 [06:22<41:22:57, 298.55s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 1/500 [06:33<41:22:57, 298.55s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 1/500 [06:44<41:22:57, 298.55s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 1/500 [06:55<41:22:57, 298.55s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 1/500 [07:06<41:22:57, 298.55s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 1/500 [07:17<41:22:57, 298.55s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 1/500 [07:28<41:22:57, 298.55s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 1/500 [07:39<41:22:57, 298.55s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 1/500 [07:50<41:22:57, 298.55s/it][default0]:
+[default0]:  0%|          | 2/500 [07:55<31:22:41, 226.83s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 2/500 [08:02<31:22:41, 226.83s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 2/500 [08:13<31:22:41, 226.83s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 2/500 [08:24<31:22:41, 226.83s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 2/500 [08:35<31:22:41, 226.83s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 2/500 [08:46<31:22:41, 226.83s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 2/500 [08:57<31:22:41, 226.83s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 2/500 [09:08<31:22:41, 226.83s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 2/500 [09:19<31:22:41, 226.83s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 2/500 [09:30<31:22:41, 226.83s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 2/500 [09:41<31:22:41, 226.83s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 2/500 [09:52<31:22:41, 226.83s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 2/500 [10:03<31:22:41, 226.83s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 2/500 [10:14<31:22:41, 226.83s/it][default0]:
+[default0]:                                                   
+[default0]:
+[default0]:  0%|          | 2/500 [10:25<31:22:41, 226.83s/it][default1]:[rank1]: Traceback (most recent call last):
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/launcher.py", line 23, in <module>
+[default1]:[rank1]:     launch()
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/launcher.py", line 19, in launch
+[default1]:[rank1]:     run_exp()
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/train/tuner.py", line 110, in run_exp
+[default1]:[rank1]:     _training_function(config={"args": args, "callbacks": callbacks})
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/train/tuner.py", line 72, in _training_function
+[default1]:[rank1]:     run_sft(model_args, data_args, training_args, finetuning_args, generating_args, callbacks)
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/train/sft/workflow.py", line 100, in run_sft
+[default1]:[rank1]:     train_result = trainer.train(resume_from_checkpoint=training_args.resume_from_checkpoint)
+[default1]:[rank1]:                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/trainer.py", line 2238, in train
+[default1]:[rank1]:     return inner_training_loop(
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/trainer.py", line 2582, in _inner_training_loop
+[default1]:[rank1]:     tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+[default1]:[rank1]:                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/trainer.py", line 3796, in training_step
+[default1]:[rank1]:     loss = self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/train/sft/trainer.py", line 139, in compute_loss
+[default1]:[rank1]:     outputs = model(**pass_inputs, output_hidden_states=True, prev_latent = relay_hidden)
+[default1]:[rank1]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[default1]:[rank1]:     return self._call_impl(*args, **kwargs)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[default1]:[rank1]:     return forward_call(*args, **kwargs)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/utils/nvtx.py", line 20, in wrapped_fn
+[default1]:[rank1]:     ret_val = func(*args, **kwargs)
+[default1]:[rank1]:               ^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 2054, in forward
+[default1]:[rank1]:     loss = self.module(*inputs, **kwargs)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[default1]:[rank1]:     return self._call_impl(*args, **kwargs)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1845, in _call_impl
+[default1]:[rank1]:     return inner()
+[default1]:[rank1]:            ^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1793, in inner
+[default1]:[rank1]:     result = forward_call(*args, **kwargs)
+[default1]:[rank1]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/peft/peft_model.py", line 1757, in forward
+[default1]:[rank1]:     return self.base_model(
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[default1]:[rank1]:     return self._call_impl(*args, **kwargs)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[default1]:[rank1]:     return forward_call(*args, **kwargs)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/peft/tuners/tuners_utils.py", line 193, in forward
+[default1]:[rank1]:     return self.model.forward(*args, **kwargs)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/utils/generic.py", line 959, in wrapper
+[default1]:[rank1]:     output = func(self, *args, **kwargs)
+[default1]:[rank1]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/hf_cache/modules/transformers_modules/Qwen3-8B-b7-allmasked/modeling_sdar.py", line 1261, in forward
+[default1]:[rank1]:     outputs = self.model(
+[default1]:[rank1]:               ^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[default1]:[rank1]:     return self._call_impl(*args, **kwargs)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[default1]:[rank1]:     return forward_call(*args, **kwargs)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/utils/generic.py", line 959, in wrapper
+[default1]:[rank1]:     output = func(self, *args, **kwargs)
+[default1]:[rank1]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/hf_cache/modules/transformers_modules/Qwen3-8B-b7-allmasked/modeling_sdar.py", line 868, in forward
+[default1]:[rank1]:     layer_outputs = decoder_layer(
+[default1]:[rank1]:                     ^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/modeling_layers.py", line 93, in __call__
+[default1]:[rank1]:     return self._gradient_checkpointing_func(partial(super().__call__, **kwargs), *args)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/model/model_utils/checkpointing.py", line 97, in custom_gradient_checkpointing_func
+[default1]:[rank1]:     return gradient_checkpointing_func(func, *args, **kwargs)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_compile.py", line 32, in inner
+[default1]:[rank1]:     return disable_fn(*args, **kwargs)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py", line 745, in _fn
+[default1]:[rank1]:     return fn(*args, **kwargs)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/utils/checkpoint.py", line 496, in checkpoint
+[default1]:[rank1]:     ret = function(*args, **kwargs)
+[default1]:[rank1]:           ^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[default1]:[rank1]:     return self._call_impl(*args, **kwargs)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[default1]:[rank1]:     return forward_call(*args, **kwargs)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/hf_cache/modules/transformers_modules/Qwen3-8B-b7-allmasked/modeling_sdar.py", line 661, in forward
+[default1]:[rank1]:     hidden_states, self_attn_weights = self.self_attn(
+[default1]:[rank1]:                                        ^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[default1]:[rank1]:     return self._call_impl(*args, **kwargs)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[default1]:[rank1]:     return forward_call(*args, **kwargs)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/hf_cache/modules/transformers_modules/Qwen3-8B-b7-allmasked/modeling_sdar.py", line 582, in forward
+[default1]:[rank1]:     attn_output, attn_weights = fused_flex_attention(
+[default1]:[rank1]:                                 ^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py", line 574, in _fn
+[default1]:[rank1]:     return fn(*args, **kwargs)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_dynamo/convert_frame.py", line 1380, in __call__
+[default1]:[rank1]:     return self._torchdynamo_orig_callable(
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_dynamo/convert_frame.py", line 547, in __call__
+[default1]:[rank1]:     return _compile(
+[default1]:[rank1]:            ^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_dynamo/convert_frame.py", line 986, in _compile
+[default1]:[rank1]:     guarded_code = compile_inner(code, one_graph, hooks, transform)
+[default1]:[rank1]:                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_dynamo/convert_frame.py", line 715, in compile_inner
+[default1]:[rank1]:     return _compile_inner(code, one_graph, hooks, transform)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_utils_internal.py", line 95, in wrapper_function
+[default1]:[rank1]:     return function(*args, **kwargs)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_dynamo/convert_frame.py", line 750, in _compile_inner
+[default1]:[rank1]:     out_code = transform_code_object(code, transform)
+[default1]:[rank1]:                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_dynamo/bytecode_transformation.py", line 1361, in transform_code_object
+[default1]:[rank1]:     transformations(instructions, code_options)
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_dynamo/convert_frame.py", line 231, in _fn
+[default1]:[rank1]:     return fn(*args, **kwargs)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_dynamo/convert_frame.py", line 662, in transform
+[default1]:[rank1]:     tracer.run()
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_dynamo/symbolic_convert.py", line 2868, in run
+[default1]:[rank1]:     super().run()
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_dynamo/symbolic_convert.py", line 1052, in run
+[default1]:[rank1]:     while self.step():
+[default1]:[rank1]:           ^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_dynamo/symbolic_convert.py", line 962, in step
+[default1]:[rank1]:     self.dispatch_table[inst.opcode](self, inst)
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_dynamo/symbolic_convert.py", line 3048, in RETURN_VALUE
+[default1]:[rank1]:     self._return(inst)
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_dynamo/symbolic_convert.py", line 3033, in _return
+[default1]:[rank1]:     self.output.compile_subgraph(
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_dynamo/output_graph.py", line 1136, in compile_subgraph
+[default1]:[rank1]:     self.compile_and_call_fx_graph(
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_dynamo/output_graph.py", line 1382, in compile_and_call_fx_graph
+[default1]:[rank1]:     compiled_fn = self.call_user_compiler(gm)
+[default1]:[rank1]:                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_dynamo/output_graph.py", line 1432, in call_user_compiler
+[default1]:[rank1]:     return self._call_user_compiler(gm)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_dynamo/output_graph.py", line 1483, in _call_user_compiler
+[default1]:[rank1]:     raise BackendCompilerFailed(self.compiler_fn, e).with_traceback(
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_dynamo/output_graph.py", line 1462, in _call_user_compiler
+[default1]:[rank1]:     compiled_fn = compiler_fn(gm, self.example_inputs())
+[default1]:[rank1]:                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_dynamo/repro/after_dynamo.py", line 130, in __call__
+[default1]:[rank1]:     compiled_gm = compiler_fn(gm, example_inputs)
+[default1]:[rank1]:                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_dynamo/repro/after_dynamo.py", line 130, in __call__
+[default1]:[rank1]:     compiled_gm = compiler_fn(gm, example_inputs)
+[default1]:[rank1]:                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/__init__.py", line 2340, in __call__
+[default1]:[rank1]:     return compile_fx(model_, inputs_, config_patches=self.config)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_inductor/compile_fx.py", line 1552, in compile_fx
+[default1]:[rank1]:     return compile_fx(
+[default1]:[rank1]:            ^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_inductor/compile_fx.py", line 1863, in compile_fx
+[default1]:[rank1]:     return aot_autograd(
+[default1]:[rank1]:            ^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_dynamo/backends/common.py", line 83, in __call__
+[default1]:[rank1]:     cg = aot_module_simplified(gm, example_inputs, **self.kwargs)
+[default1]:[rank1]:          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_functorch/aot_autograd.py", line 1155, in aot_module_simplified
+[default1]:[rank1]:     compiled_fn = dispatch_and_compile()
+[default1]:[rank1]:                   ^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_functorch/aot_autograd.py", line 1131, in dispatch_and_compile
+[default1]:[rank1]:     compiled_fn, _ = create_aot_dispatcher_function(
+[default1]:[rank1]:                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_functorch/aot_autograd.py", line 580, in create_aot_dispatcher_function
+[default1]:[rank1]:     return _create_aot_dispatcher_function(
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_functorch/aot_autograd.py", line 830, in _create_aot_dispatcher_function
+[default1]:[rank1]:     compiled_fn, fw_metadata = compiler_fn(
+[default1]:[rank1]:                                ^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_functorch/_aot_autograd/jit_compile_runtime_wrappers.py", line 678, in aot_dispatch_autograd
+[default1]:[rank1]:     compiled_fw_func = aot_config.fw_compiler(fw_module, adjusted_flat_args)
+[default1]:[rank1]:                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_functorch/aot_autograd.py", line 489, in __call__
+[default1]:[rank1]:     return self.compiler_fn(gm, example_inputs)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_inductor/compile_fx.py", line 1741, in fw_compiler_base
+[default1]:[rank1]:     return inner_compile(
+[default1]:[rank1]:            ^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/usr/lib/python3.12/contextlib.py", line 81, in inner
+[default1]:[rank1]:     return func(*args, **kwds)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_inductor/compile_fx.py", line 569, in compile_fx_inner
+[default1]:[rank1]:     return wrap_compiler_debug(_compile_fx_inner, compiler_name="inductor")(
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_dynamo/repro/after_aot.py", line 102, in debug_wrapper
+[default1]:[rank1]:     inner_compiled_fn = compiler_fn(gm, example_inputs)
+[default1]:[rank1]:                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_inductor/compile_fx.py", line 685, in _compile_fx_inner
+[default1]:[rank1]:     mb_compiled_graph = fx_codegen_and_compile(
+[default1]:[rank1]:                         ^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_inductor/compile_fx.py", line 1129, in fx_codegen_and_compile
+[default1]:[rank1]:     return scheme.codegen_and_compile(gm, example_inputs, inputs_to_check, graph_kwargs)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_inductor/compile_fx.py", line 979, in codegen_and_compile
+[default1]:[rank1]:     graph.run(*example_inputs)
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_inductor/graph.py", line 855, in run
+[default1]:[rank1]:     return super().run(*args)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/fx/interpreter.py", line 167, in run
+[default1]:[rank1]:     self.env[node] = self.run_node(node)
+[default1]:[rank1]:                      ^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_inductor/graph.py", line 1496, in run_node
+[default1]:[rank1]:     result = super().run_node(n)
+[default1]:[rank1]:              ^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/fx/interpreter.py", line 230, in run_node
+[default1]:[rank1]:     return getattr(self, n.op)(n.target, args, kwargs)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_inductor/graph.py", line 1143, in call_function
+[default1]:[rank1]:     raise LoweringException(e, target, args, kwargs).with_traceback(
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_inductor/graph.py", line 1133, in call_function
+[default1]:[rank1]:     out = lowerings[target](*args, **kwargs)  # type: ignore[index]
+[default1]:[rank1]:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_inductor/lowering.py", line 409, in wrapped
+[default1]:[rank1]:     out = decomp_fn(*args, **kwargs)
+[default1]:[rank1]:           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_inductor/kernel/flex_attention.py", line 1285, in flex_attention
+[default1]:[rank1]:     autotune_select_algorithm(
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_inductor/select_algorithm.py", line 1909, in autotune_select_algorithm
+[default1]:[rank1]:     return _ALGORITHM_SELECTOR_CACHE(*args, **kwargs)
+[default1]:[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_inductor/select_algorithm.py", line 1394, in __call__
+[default1]:[rank1]:     inputs_key = create_inputs_key(input_nodes)
+[default1]:[rank1]:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_inductor/select_algorithm.py", line 1308, in create_inputs_key
+[default1]:[rank1]:     return repr([AlgorithmSelectorCache.key_of(x) for x in input_nodes])
+[default1]:[rank1]:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[default1]:[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/_inductor/select_algorithm.py", line 1871, in key_of
+[default1]:[rank1]:     node.get_device().type,
+[default1]:[rank1]:     ^^^^^^^^^^^^^^^
+[default1]:[rank1]: torch._dynamo.exc.BackendCompilerFailed: backend='inductor' raised:
+[default1]:[rank1]: LoweringException: AttributeError: 'Symbol' object has no attribute 'get_device'
+[default1]:[rank1]:   target: flex_attention
+[default1]:[rank1]:   args[0]: TensorBox(StorageBox(
+[default1]:[rank1]:     InputBuffer(name='primals_2', layout=FixedLayout('cuda:1', torch.bfloat16, size=[1, 32, s0, 128], stride=[4096*s0, 128, 4096, 1]))
+[default1]:[rank1]:   ))
+[default1]:[rank1]:   args[1]: TensorBox(StorageBox(
+[default1]:[rank1]:     InputBuffer(name='primals_4', layout=FixedLayout('cuda:1', torch.bfloat16, size=[1, 8, s1, 128], stride=[1024*s1, 128, 1024, 1]))
+[default1]:[rank1]:   ))
+[default1]:[rank1]:   args[2]: TensorBox(StorageBox(
+[default1]:[rank1]:     InputBuffer(name='primals_6', layout=FixedLayout('cuda:1', torch.bfloat16, size=[1, 8, s3, 128], stride=[1024*s3, 128, 1024, 1]))
+[default1]:[rank1]:   ))
+[default1]:[rank1]:   args[3]: Subgraph(name='sdpa_score0', graph_module=<lambda>(), graph=None)
+[default1]:[rank1]:   args[4]: (s0, s1, TensorBox(StorageBox(
+[default1]:[rank1]:     InputBuffer(name='primals_13', layout=FixedLayout('cuda:1', torch.int32, size=[1, 1, s8], stride=[s8, s8, 1]))
+[default1]:[rank1]:   )), TensorBox(StorageBox(
+[default1]:[rank1]:     InputBuffer(name='primals_9', layout=FixedLayout('cuda:1', torch.int32, size=[1, 1, s4, s5], stride=[s4*s5, s4*s5, s5, 1]))
+[default1]:[rank1]:   )), TensorBox(StorageBox(
+[default1]:[rank1]:     InputBuffer(name='primals_18', layout=FixedLayout('cuda:1', torch.int32, size=[1, 1, s11], stride=[s11, s11, 1]))
+[default1]:[rank1]:   )), TensorBox(StorageBox(
+[default1]:[rank1]:     InputBuffer(name='primals_21', layout=FixedLayout('cuda:1', torch.int32, size=[1, 1, s12, s13], stride=[s12*s13, s12*s13, s13, 1]))
+[default1]:[rank1]:   )), TensorBox(StorageBox(
+[default1]:[rank1]:     InputBuffer(name='primals_23', layout=FixedLayout('cuda:1', torch.int32, size=[1, 1, s14], stride=[s14, s14, 1]))
+[default1]:[rank1]:   )), TensorBox(StorageBox(
+[default1]:[rank1]:     InputBuffer(name='primals_26', layout=FixedLayout('cuda:1', torch.int32, size=[1, 1, s15, s16], stride=[s15*s16, s15*s16, s16, 1]))
+[default1]:[rank1]:   )), TensorBox(StorageBox(
+[default1]:[rank1]:     InputBuffer(name='primals_28', layout=FixedLayout('cuda:1', torch.int32, size=[1, 1, s17], stride=[s17, s17, 1]))
+[default1]:[rank1]:   )), TensorBox(StorageBox(
+[default1]:[rank1]:     InputBuffer(name='primals_31', layout=FixedLayout('cuda:1', torch.int32, size=[1, 1, s18, s19], stride=[s18*s19, s18*s19, s19, 1]))
+[default1]:[rank1]:   )), 128, 128, Subgraph(name='sdpa_mask0', graph_module=<lambda>(), graph=None))
+[default1]:[rank1]:   args[5]: 0.08838834764831845
+[default1]:[rank1]:   args[6]: {'PRESCALE_QK': False, 'ROWS_GUARANTEED_SAFE': False, 'BLOCKS_ARE_CONTIGUOUS': False, 'OUTPUT_LOGSUMEXP': True}
+[default1]:[rank1]:   args[7]: ()
+[default1]:[rank1]:   args[8]: (s9, s10, TensorBox(StorageBox(
+[default1]:[rank1]:     InputBuffer(name='primals_16', layout=FixedLayout('cuda:1', torch.bool, size=[1, s9, s10], stride=[s10*s9, s10, 1]))
+[default1]:[rank1]:   )))
+[default1]:
+[default1]:[rank1]: Set TORCH_LOGS="+dynamo" and TORCHDYNAMO_VERBOSE=1 for more information
+[default1]:
+[default1]:
+[default1]:[rank1]: You can suppress this exception and fall back to eager by setting:
+[default1]:[rank1]:     import torch._dynamo
+[default1]:[rank1]:     torch._dynamo.config.suppress_errors = True
+[default1]:
+W0928 02:31:54.751000 2757857 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 2757935 closing signal SIGTERM
+E0928 02:31:54.868000 2757857 torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 1 (pid: 2757936) of binary: /work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/bin/python3
+Traceback (most recent call last):
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/bin/torchrun", line 6, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/distributed/run.py", line 918, in main
+    run(args)
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+src/llamafactory/launcher.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-09-28_02:31:54
+  host      : gpu013.unity.rc.umass.edu
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 2757936)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

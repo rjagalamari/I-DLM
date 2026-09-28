@@ -1,0 +1,43 @@
+started Sat Sep 26 03:42:08 AM UTC 2026 on gpu014
+Sat Sep 26 03:42:08 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-80GB          On  |   00000000:1B:00.0 Off |                    0 |
+| N/A   34C    P0             65W /  500W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA A100-SXM4-80GB          On  |   00000000:3D:00.0 Off |                    0 |
+| N/A   33C    P0             66W /  500W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+[2026-09-26 03:42:44,192] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (override)
+[2026-09-26 03:42:44,192] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (override)
+[2026-09-26 03:42:51,563] [INFO] [comm.py:669:init_distributed] cdb=None
+[2026-09-26 03:42:51,564] [INFO] [comm.py:669:init_distributed] cdb=None
+[2026-09-26 03:42:51,564] [INFO] [comm.py:700:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+[INFO|2026-09-26 03:42:51] llamafactory.hparams.parser:143 >> Set `ddp_find_unused_parameters` to False in DDP training since LoRA is enabled.
+[INFO|2026-09-26 03:42:51] llamafactory.hparams.parser:414 >> Process rank: 0, world size: 2, device: cuda:0, distributed training: True, compute dtype: torch.bfloat16
+[INFO|2026-09-26 03:42:51] llamafactory.hparams.parser:414 >> Process rank: 1, world size: 2, device: cuda:1, distributed training: True, compute dtype: torch.bfloat16
+[INFO|2026-09-26 03:42:52] llamafactory.data.template:143 >> Replace eos token: <|im_end|>.
+[INFO|2026-09-26 03:42:52] llamafactory.model.model_utils.kv_cache:143 >> KV cache is disabled during training.
+🚨 `store_kv` is part of SDARModel.forward's signature, but not documented. Make sure to add it to the docstring of the function in /work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/hf_cache/modules/transformers_modules/Qwen3-8B-b7-allmasked/modeling_sdar.py.
+🚨 `prev_latent` is part of SDARModel.forward's signature, but not documented. Make sure to add it to the docstring of the function in /work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/hf_cache/modules/transformers_modules/Qwen3-8B-b7-allmasked/modeling_sdar.py.
+🚨 `store_kv` is part of SDARModel.forward's signature, but not documented. Make sure to add it to the docstring of the function in /work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/hf_cache/modules/transformers_modules/Qwen3-8B-b7-allmasked/modeling_sdar.py.
+🚨 `prev_latent` is part of SDARModel.forward's signature, but not documented. Make sure to add it to the docstring of the function in /work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/hf_cache/modules/transformers_modules/Qwen3-8B-b7-allmasked/modeling_sdar.py.
+🚨 `clean_input_ids` is part of SDARForCausalLM.forward's signature, but not documented. Make sure to add it to the docstring of the function in /work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/hf_cache/modules/transformers_modules/Qwen3-8B-b7-allmasked/modeling_sdar.py.
+🚨 `prev_latent` is part of SDARForCausalLM.forward's signature, but not documented. Make sure to add it to the docstring of the function in /work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/hf_cache/modules/transformers_modules/Qwen3-8B-b7-allmasked/modeling_sdar.py.
+🚨 `clean_input_ids` is part of SDARForCausalLM.forward's signature, but not documented. Make sure to add it to the docstring of the function in /work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/hf_cache/modules/transformers_modules/Qwen3-8B-b7-allmasked/modeling_sdar.py.
+🚨 `prev_latent` is part of SDARForCausalLM.forward's signature, but not documented. Make sure to add it to the docstring of the function in /work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/hf_cache/modules/transformers_modules/Qwen3-8B-b7-allmasked/modeling_sdar.py.

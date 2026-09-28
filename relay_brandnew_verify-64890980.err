@@ -1,0 +1,232 @@
+Removing libiconv version 1.17
+Removing xz version 5.4.6
+Removing zlib-ng version 2.1.6
+Removing libxml2 version 2.10.3
+Removing cuda version 12.4.1
+Loading libiconv version 1.17
+Loading xz version 5.4.6
+Loading zlib-ng version 2.1.6
+Loading libxml2 version 2.10.3
+Loading cuda version 12.4.1
+W0926 03:42:19.690000 405000 torch/distributed/run.py:792] 
+W0926 03:42:19.690000 405000 torch/distributed/run.py:792] *****************************************
+W0926 03:42:19.690000 405000 torch/distributed/run.py:792] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0926 03:42:19.690000 405000 torch/distributed/run.py:792] *****************************************
+[INFO|tokenization_utils_base.py:2065] 2026-09-26 03:42:51,727 >> loading file vocab.json
+[INFO|tokenization_utils_base.py:2065] 2026-09-26 03:42:51,727 >> loading file merges.txt
+[INFO|tokenization_utils_base.py:2065] 2026-09-26 03:42:51,727 >> loading file added_tokens.json
+[INFO|tokenization_utils_base.py:2065] 2026-09-26 03:42:51,727 >> loading file special_tokens_map.json
+[INFO|tokenization_utils_base.py:2065] 2026-09-26 03:42:51,727 >> loading file tokenizer_config.json
+[INFO|tokenization_utils_base.py:2065] 2026-09-26 03:42:51,727 >> loading file tokenizer.json
+[INFO|tokenization_utils_base.py:2065] 2026-09-26 03:42:51,727 >> loading file chat_template.jinja
+[INFO|tokenization_utils_base.py:2336] 2026-09-26 03:42:51,944 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[INFO|configuration_utils.py:750] 2026-09-26 03:42:51,948 >> loading configuration file ../model/Qwen3-8B-b7-allmasked/config.json
+[INFO|configuration_utils.py:750] 2026-09-26 03:42:51,969 >> loading configuration file ../model/Qwen3-8B-b7-allmasked/config.json
+[INFO|configuration_utils.py:817] 2026-09-26 03:42:51,969 >> Model config SDARConfig {
+  "architectures": [
+    "SDARForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "auto_map": {
+    "AutoConfig": "configuration_sdar.SDARConfig",
+    "AutoModel": "modeling_sdar.SDARModel",
+    "AutoModelForCausalLM": "modeling_sdar.SDARForCausalLM"
+  },
+  "block_size": 7,
+  "bos_token_id": 151643,
+  "eos_token_id": 151645,
+  "fuse_cross_entropy": true,
+  "head_dim": 128,
+  "hidden_act": "silu",
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 12288,
+  "mask_token_id": 151669,
+  "max_position_embeddings": 40960,
+  "max_window_layers": 36,
+  "model_type": "sdar",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 36,
+  "num_key_value_heads": 8,
+  "rms_norm_eps": 1e-06,
+  "rope_scaling": null,
+  "rope_theta": 1000000,
+  "sliding_window": null,
+  "tie_word_embeddings": false,
+  "torch_dtype": "bfloat16",
+  "transformers_version": "4.55.0",
+  "use_cache": false,
+  "use_regular_causal": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|tokenization_utils_base.py:2065] 2026-09-26 03:42:51,974 >> loading file vocab.json
+[INFO|tokenization_utils_base.py:2065] 2026-09-26 03:42:51,974 >> loading file merges.txt
+[INFO|tokenization_utils_base.py:2065] 2026-09-26 03:42:51,974 >> loading file added_tokens.json
+[INFO|tokenization_utils_base.py:2065] 2026-09-26 03:42:51,974 >> loading file special_tokens_map.json
+[INFO|tokenization_utils_base.py:2065] 2026-09-26 03:42:51,974 >> loading file tokenizer_config.json
+[INFO|tokenization_utils_base.py:2065] 2026-09-26 03:42:51,974 >> loading file tokenizer.json
+[INFO|tokenization_utils_base.py:2065] 2026-09-26 03:42:51,974 >> loading file chat_template.jinja
+[INFO|tokenization_utils_base.py:2336] 2026-09-26 03:42:52,153 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[INFO|configuration_utils.py:750] 2026-09-26 03:42:52,176 >> loading configuration file ../model/Qwen3-8B-b7-allmasked/config.json
+[INFO|configuration_utils.py:750] 2026-09-26 03:42:52,180 >> loading configuration file ../model/Qwen3-8B-b7-allmasked/config.json
+[INFO|configuration_utils.py:817] 2026-09-26 03:42:52,181 >> Model config SDARConfig {
+  "architectures": [
+    "SDARForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "auto_map": {
+    "AutoConfig": "configuration_sdar.SDARConfig",
+    "AutoModel": "modeling_sdar.SDARModel",
+    "AutoModelForCausalLM": "modeling_sdar.SDARForCausalLM"
+  },
+  "block_size": 7,
+  "bos_token_id": 151643,
+  "eos_token_id": 151645,
+  "fuse_cross_entropy": true,
+  "head_dim": 128,
+  "hidden_act": "silu",
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 12288,
+  "mask_token_id": 151669,
+  "max_position_embeddings": 40960,
+  "max_window_layers": 36,
+  "model_type": "sdar",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 36,
+  "num_key_value_heads": 8,
+  "rms_norm_eps": 1e-06,
+  "rope_scaling": null,
+  "rope_theta": 1000000,
+  "sliding_window": null,
+  "tie_word_embeddings": false,
+  "torch_dtype": "bfloat16",
+  "transformers_version": "4.55.0",
+  "use_cache": false,
+  "use_regular_causal": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|modeling_utils.py:1305] 2026-09-26 03:42:53,241 >> loading weights file ../model/Qwen3-8B-b7-allmasked/model.safetensors.index.json
+[INFO|modeling_utils.py:2411] 2026-09-26 03:42:53,243 >> Instantiating SDARForCausalLM model under default dtype torch.bfloat16.
+[INFO|configuration_utils.py:1098] 2026-09-26 03:42:53,245 >> Generate config GenerationConfig {
+  "bos_token_id": 151643,
+  "eos_token_id": 151645,
+  "use_cache": false
+}
+
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/launcher.py", line 23, in <module>
+[rank1]:     launch()
+[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/launcher.py", line 19, in launch
+[rank1]:     run_exp()
+[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/train/tuner.py", line 110, in run_exp
+[rank1]:     _training_function(config={"args": args, "callbacks": callbacks})
+[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/train/tuner.py", line 72, in _training_function
+[rank1]:     run_sft(model_args, data_args, training_args, finetuning_args, generating_args, callbacks)
+[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/train/sft/workflow.py", line 53, in run_sft
+[rank1]:     model = load_model(tokenizer, model_args, finetuning_args, training_args.do_train)
+[rank1]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/model/loader.py", line 173, in load_model
+[rank1]:     model = load_class.from_pretrained(**init_kwargs)
+[rank1]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py", line 593, in from_pretrained
+[rank1]:     return model_class.from_pretrained(
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/modeling_utils.py", line 316, in _wrapper
+[rank1]:     return func(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/modeling_utils.py", line 5061, in from_pretrained
+[rank1]:     ) = cls._load_pretrained_model(
+[rank1]:         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/modeling_utils.py", line 5524, in _load_pretrained_model
+[rank1]:     _error_msgs, disk_offload_index, cpu_offload_index = load_shard_file(args)
+[rank1]:                                                          ^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/modeling_utils.py", line 961, in load_shard_file
+[rank1]:     state_dict = load_state_dict(
+[rank1]:                  ^^^^^^^^^^^^^^^^
+[rank1]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/modeling_utils.py", line 537, in load_state_dict
+[rank1]:     with safe_open(checkpoint_file, framework="pt") as f:
+[rank1]:          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]: FileNotFoundError: No such file or directory: "../model/Qwen3-8B-b7-allmasked/model-00001-of-00005.safetensors"
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/launcher.py", line 23, in <module>
+[rank0]:     launch()
+[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/launcher.py", line 19, in launch
+[rank0]:     run_exp()
+[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/train/tuner.py", line 110, in run_exp
+[rank0]:     _training_function(config={"args": args, "callbacks": callbacks})
+[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/train/tuner.py", line 72, in _training_function
+[rank0]:     run_sft(model_args, data_args, training_args, finetuning_args, generating_args, callbacks)
+[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/train/sft/workflow.py", line 53, in run_sft
+[rank0]:     model = load_model(tokenizer, model_args, finetuning_args, training_args.do_train)
+[rank0]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/model/loader.py", line 173, in load_model
+[rank0]:     model = load_class.from_pretrained(**init_kwargs)
+[rank0]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py", line 593, in from_pretrained
+[rank0]:     return model_class.from_pretrained(
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/modeling_utils.py", line 316, in _wrapper
+[rank0]:     return func(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/modeling_utils.py", line 5061, in from_pretrained
+[rank0]:     ) = cls._load_pretrained_model(
+[rank0]:         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/modeling_utils.py", line 5524, in _load_pretrained_model
+[rank0]:     _error_msgs, disk_offload_index, cpu_offload_index = load_shard_file(args)
+[rank0]:                                                          ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/modeling_utils.py", line 961, in load_shard_file
+[rank0]:     state_dict = load_state_dict(
+[rank0]:                  ^^^^^^^^^^^^^^^^
+[rank0]:   File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/modeling_utils.py", line 537, in load_state_dict
+[rank0]:     with safe_open(checkpoint_file, framework="pt") as f:
+[rank0]:          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]: FileNotFoundError: No such file or directory: "../model/Qwen3-8B-b7-allmasked/model-00001-of-00005.safetensors"
+[rank0]:[W926 03:42:54.355946921 ProcessGroupNCCL.cpp:1496] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+E0926 03:42:55.547000 405000 torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 0 (pid: 405116) of binary: /work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/bin/python3
+Traceback (most recent call last):
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/bin/torchrun", line 6, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/distributed/run.py", line 918, in main
+    run(args)
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+src/llamafactory/launcher.py FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2026-09-26_03:42:55
+  host      : gpu014.unity.rc.umass.edu
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 405117)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-09-26_03:42:55
+  host      : gpu014.unity.rc.umass.edu
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 405116)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

@@ -829,7 +829,7 @@ class SDARModel(SDARPreTrainedModel):
         if prev_latent is not None:
             latent = prev_latent.to(inputs_embeds)
             latent = torch.cat([latent[:, :1], latent[:, :-1]], dim=1)
-            delta = self.relay_layer_norm(latent)
+            delta = self.relay_layer_norm(latent).to(inputs_embeds.dtype)
             delta = torch.cat([delta, torch.zeros_like(delta)], dim=1)
             guard = input_ids.eq(self.config.mask_token_id).unsqueeze(-1)
             inputs_embeds = torch.where(guard, inputs_embeds + delta, inputs_embeds)

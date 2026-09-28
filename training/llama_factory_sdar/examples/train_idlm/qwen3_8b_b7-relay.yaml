@@ -8,11 +8,17 @@
 model_name_or_path: ../model/Qwen3-8B-b7-allmasked
 train_from_scratch: false
 trust_remote_code: true
+use_reentrant_gc: false
 
 ### method
 stage: sft
 do_train: true
-finetuning_type: full
+finetuning_type: lora
+lora_rank: 128
+lora_alpha: 256
+lora_dropout: 0.0
+lora_target: all
+additional_target: relay_layer_norm
 deepspeed: examples/deepspeed/ds_z2_config.json
 
 ### dataset
@@ -21,7 +27,7 @@ deepspeed: examples/deepspeed/ds_z2_config.json
 dataset: open_thoughts3_sample
 template: qwen3
 pretokenized: false
-cutoff_len: 4096
+cutoff_len: 4095
 block_length: 7
 relay_enable: true
 truncate_mode: cut
@@ -37,7 +43,7 @@ loss_auto_balance: true
 ### output
 output_dir: ../output/idlm_qwen3_8b_b7_relay
 logging_steps: 5
-save_steps: 250
+save_steps: 100
 save_total_limit: 10
 plot_loss: true
 overwrite_output_dir: true
@@ -49,8 +55,9 @@ wandb_project: idlm-training
 run_name: idlm_qwen3_8b_b7_relay
 include_effective_tokens_per_second: true
 per_device_train_batch_size: 1
-gradient_accumulation_steps: 4
+gradient_accumulation_steps: 16
 learning_rate: 1.0e-5
+max_samples: 16000
 num_train_epochs: 1.0
 lr_scheduler_type: cosine
 warmup_ratio: 0.03

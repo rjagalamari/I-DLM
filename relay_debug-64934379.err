@@ -1,0 +1,193 @@
+Removing libiconv version 1.17
+Removing xz version 5.4.6
+Removing zlib-ng version 2.1.6
+Removing libxml2 version 2.10.3
+Removing cuda version 12.4.1
+Loading libiconv version 1.17
+Loading xz version 5.4.6
+Loading zlib-ng version 2.1.6
+Loading libxml2 version 2.10.3
+Loading cuda version 12.4.1
+[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:30:42,478 >> loading file vocab.json
+[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:30:42,478 >> loading file merges.txt
+[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:30:42,478 >> loading file added_tokens.json
+[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:30:42,478 >> loading file special_tokens_map.json
+[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:30:42,478 >> loading file tokenizer_config.json
+[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:30:42,478 >> loading file tokenizer.json
+[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:30:42,478 >> loading file chat_template.jinja
+[INFO|tokenization_utils_base.py:2336] 2026-09-27 03:30:42,702 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[INFO|configuration_utils.py:750] 2026-09-27 03:30:42,707 >> loading configuration file ../model/Qwen3-8B-b7-allmasked/config.json
+[INFO|configuration_utils.py:750] 2026-09-27 03:30:42,733 >> loading configuration file ../model/Qwen3-8B-b7-allmasked/config.json
+[INFO|configuration_utils.py:817] 2026-09-27 03:30:42,734 >> Model config SDARConfig {
+  "architectures": [
+    "SDARForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "auto_map": {
+    "AutoConfig": "configuration_sdar.SDARConfig",
+    "AutoModel": "modeling_sdar.SDARModel",
+    "AutoModelForCausalLM": "modeling_sdar.SDARForCausalLM"
+  },
+  "block_size": 7,
+  "bos_token_id": 151643,
+  "eos_token_id": 151645,
+  "fuse_cross_entropy": true,
+  "head_dim": 128,
+  "hidden_act": "silu",
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 12288,
+  "mask_token_id": 151669,
+  "max_position_embeddings": 40960,
+  "max_window_layers": 36,
+  "model_type": "sdar",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 36,
+  "num_key_value_heads": 8,
+  "rms_norm_eps": 1e-06,
+  "rope_scaling": null,
+  "rope_theta": 1000000,
+  "sliding_window": null,
+  "tie_word_embeddings": false,
+  "torch_dtype": "bfloat16",
+  "transformers_version": "4.55.0",
+  "use_cache": false,
+  "use_regular_causal": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:30:42,739 >> loading file vocab.json
+[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:30:42,739 >> loading file merges.txt
+[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:30:42,739 >> loading file added_tokens.json
+[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:30:42,739 >> loading file special_tokens_map.json
+[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:30:42,739 >> loading file tokenizer_config.json
+[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:30:42,739 >> loading file tokenizer.json
+[INFO|tokenization_utils_base.py:2065] 2026-09-27 03:30:42,739 >> loading file chat_template.jinja
+[INFO|tokenization_utils_base.py:2336] 2026-09-27 03:30:42,912 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[INFO|configuration_utils.py:750] 2026-09-27 03:30:42,935 >> loading configuration file ../model/Qwen3-8B-b7-allmasked/config.json
+[INFO|configuration_utils.py:750] 2026-09-27 03:30:42,938 >> loading configuration file ../model/Qwen3-8B-b7-allmasked/config.json
+[INFO|configuration_utils.py:817] 2026-09-27 03:30:42,939 >> Model config SDARConfig {
+  "architectures": [
+    "SDARForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "auto_map": {
+    "AutoConfig": "configuration_sdar.SDARConfig",
+    "AutoModel": "modeling_sdar.SDARModel",
+    "AutoModelForCausalLM": "modeling_sdar.SDARForCausalLM"
+  },
+  "block_size": 7,
+  "bos_token_id": 151643,
+  "eos_token_id": 151645,
+  "fuse_cross_entropy": true,
+  "head_dim": 128,
+  "hidden_act": "silu",
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 12288,
+  "mask_token_id": 151669,
+  "max_position_embeddings": 40960,
+  "max_window_layers": 36,
+  "model_type": "sdar",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 36,
+  "num_key_value_heads": 8,
+  "rms_norm_eps": 1e-06,
+  "rope_scaling": null,
+  "rope_theta": 1000000,
+  "sliding_window": null,
+  "tie_word_embeddings": false,
+  "torch_dtype": "bfloat16",
+  "transformers_version": "4.55.0",
+  "use_cache": false,
+  "use_regular_causal": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|modeling_utils.py:1305] 2026-09-27 03:30:43,859 >> loading weights file ../model/Qwen3-8B-b7-allmasked/model.safetensors.index.json
+[INFO|modeling_utils.py:2411] 2026-09-27 03:30:43,861 >> Instantiating SDARForCausalLM model under default dtype torch.bfloat16.
+[INFO|configuration_utils.py:1098] 2026-09-27 03:30:43,865 >> Generate config GenerationConfig {
+  "bos_token_id": 151643,
+  "eos_token_id": 151645,
+  "use_cache": false
+}
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.03it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.03it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.03it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.42it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.25it/s]
+[INFO|modeling_utils.py:5606] 2026-09-27 03:30:47,330 >> All model checkpoint weights were used when initializing SDARForCausalLM.
+
+[WARNING|modeling_utils.py:5608] 2026-09-27 03:30:47,330 >> Some weights of SDARForCausalLM were not initialized from the model checkpoint at ../model/Qwen3-8B-b7-allmasked and are newly initialized: ['model.relay_layer_norm.bias', 'model.relay_layer_norm.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+[INFO|configuration_utils.py:1051] 2026-09-27 03:30:47,333 >> loading configuration file ../model/Qwen3-8B-b7-allmasked/generation_config.json
+[INFO|configuration_utils.py:1098] 2026-09-27 03:30:47,333 >> Generate config GenerationConfig {
+  "bos_token_id": 151643,
+  "do_sample": true,
+  "eos_token_id": [
+    151645,
+    151643
+  ],
+  "pad_token_id": 151643,
+  "temperature": 0.6,
+  "top_k": 20,
+  "top_p": 0.95
+}
+
+[INFO|trainer.py:707] 2026-09-27 03:30:53,990 >> max_steps is given, it will override any value given in num_train_epochs
+[INFO|trainer.py:757] 2026-09-27 03:30:53,990 >> Using auto half precision backend
+[INFO|trainer.py:2433] 2026-09-27 03:30:54,274 >> ***** Running training *****
+[INFO|trainer.py:2434] 2026-09-27 03:30:54,274 >>   Num examples = 96
+[INFO|trainer.py:2435] 2026-09-27 03:30:54,274 >>   Num Epochs = 1
+[INFO|trainer.py:2436] 2026-09-27 03:30:54,274 >>   Instantaneous batch size per device = 1
+[INFO|trainer.py:2439] 2026-09-27 03:30:54,274 >>   Total train batch size (w. parallel, distributed & accumulation) = 16
+[INFO|trainer.py:2440] 2026-09-27 03:30:54,274 >>   Gradient Accumulation steps = 16
+[INFO|trainer.py:2441] 2026-09-27 03:30:54,274 >>   Total optimization steps = 3
+[INFO|trainer.py:2442] 2026-09-27 03:30:54,278 >>   Number of trainable parameters = 349,184,000
+  0%|          | 0/3 [00:00<?, ?it/s]E0927 03:31:09.334000 991518 torch/_inductor/select_algorithm.py:1477] [0/0] Exception out of resource: shared memory, Required: 180224, Hardware limit: 166912. Reducing block sizes or `num_stages` may help. for benchmark choice TritonTemplateCaller(/tmp/torchinductor_rjagalamari_umass_edu/cf/ccf5tz7v4qfci46nvaas7fagbxsfcn7zbpxoxkkmkvjeycqdxc2g.py, BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=64, BLOCK_N=128, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4)
+E0927 03:31:10.237000 991518 torch/_inductor/select_algorithm.py:1477] [0/0] Exception out of resource: shared memory, Required: 205824, Hardware limit: 166912. Reducing block sizes or `num_stages` may help. for benchmark choice TritonTemplateCaller(/tmp/torchinductor_rjagalamari_umass_edu/2z/c2zes4kbpnnbgdvg4ci2ktira7cofqwjsmnyldggyvbprb467jdt.py, BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=128, BLOCK_N=128, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4)
+W0927 03:31:10.633000 991518 torch/_inductor/select_algorithm.py:1696] [0/0] out of resource: shared memory, Required: 205824, Hardware limit: 166912. Reducing block sizes or `num_stages` may help.
+W0927 03:31:10.650000 991518 torch/_inductor/select_algorithm.py:1696] [0/0] out of resource: shared memory, Required: 180224, Hardware limit: 166912. Reducing block sizes or `num_stages` may help.
+AUTOTUNE flex_attention(1x32x8192x128, 1x8x8192x128, 1x8x8192x128, 1x32x8192, 1x1x64, 1x1x64x64, 1x1x64, 1x1x64x64, 1x8192x8192)
+  triton_flex_attention_0 4.4646 ms 100.0% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=128, BLOCK_N=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=8
+  triton_flex_attention_1 4.9746 ms 89.7% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=128, BLOCK_N=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+  triton_flex_attention_4 5.7969 ms 77.0% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=64, BLOCK_N=64, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+  triton_flex_attention_2 inf ms 0.0% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=128, BLOCK_N=128, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+  triton_flex_attention_3 inf ms 0.0% BLOCKS_ARE_CONTIGUOUS=False, BLOCK_M=64, BLOCK_N=128, FLOAT32_PRECISION="'ieee'", GQA_SHARED_HEADS=4, HAS_FULL_BLOCKS=True, IS_DIVISIBLE=True, OUTPUT_LOGSUMEXP=True, PRESCALE_QK=False, QK_HEAD_DIM=128, ROWS_GUARANTEED_SAFE=False, SM_SCALE=0.08838834764831845, SPARSE_KV_BLOCK_SIZE=128, SPARSE_Q_BLOCK_SIZE=128, V_HEAD_DIM=128, num_stages=3, num_warps=4
+SingleProcess AUTOTUNE benchmarking takes 0.5804 seconds and 7.9510 seconds precompiling for 5 choices
+Traceback (most recent call last):
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/launcher.py", line 23, in <module>
+    launch()
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/launcher.py", line 19, in launch
+    run_exp()
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/train/tuner.py", line 110, in run_exp
+    _training_function(config={"args": args, "callbacks": callbacks})
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/train/tuner.py", line 72, in _training_function
+    run_sft(model_args, data_args, training_args, finetuning_args, generating_args, callbacks)
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/train/sft/workflow.py", line 100, in run_sft
+    train_result = trainer.train(resume_from_checkpoint=training_args.resume_from_checkpoint)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/trainer.py", line 2238, in train
+    return inner_training_loop(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/trainer.py", line 2582, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/transformers/trainer.py", line 3796, in training_step
+    loss = self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/all_ladder_experiments/ladder_5_hidden_relay/new_5_experiments/relay_brandnew_model_verify/training/llama_factory_sdar/src/llamafactory/train/sft/trainer.py", line 154, in compute_loss
+    clean_logits = unwrapped_model.lm_head(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/pi_mccallum_umass_edu/rjagalamari_umass_edu/idlm/.venv_idlm/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: expected scalar type BFloat16 but found Float
+  0%|          | 0/3 [00:41<?, ?it/s]
